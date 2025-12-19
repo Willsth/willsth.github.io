@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Theodor Lehn-Schiøler | Personal Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="William.jpeg" alt="William Theodor Lehn-Schiøler" class="profile-pic">
+        <h1>William Theodor Lehn-Schiøler</h1>
+        <h2>Industrial PhD Student at BrainCapture and DTU Health Tech</h2>
+        
+        <p>Welcome! I am a passionate individual working on AI for EEG. This space serves as a central hub for my professional online presence.</p>
+
+        <div class="links">
+            <a href="https://www.linkedin.com/in/williamtheodor/" target="_blank">LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=7K_-v1UAAAAJ&hl=en&oi=ao" target="_blank" class="scholar">Google Scholar</a>
+            <a href="projects.html" class="projects-link">Student Projects & Thesis</a>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.8em; color: #999;">Built with GitHub Pages.</p>
+    </div>
+</body>
+</html>
