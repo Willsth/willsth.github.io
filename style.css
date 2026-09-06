@@ -175,3 +175,170 @@ p { line-height: 1.6; }
     font-size: 0.78em;
     color: #2e4458;
 }
+
+/* ── Page intro & section headings ─────────────────────────────── */
+.page-intro {
+    font-size: 0.93em;
+    color: #8aa0b4;
+    line-height: 1.7;
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.page-intro a { color: #4ab8d8; text-decoration: none; }
+.page-intro a:hover { text-decoration: underline; }
+
+.section-title {
+    text-align: left;
+    color: #7aaac8;
+    font-size: 0.82em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 38px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(45, 100, 140, 0.28);
+}
+
+.section-lead {
+    text-align: left;
+    font-size: 0.91em;
+    color: #8aa0b4;
+    margin: 0 0 14px;
+}
+
+.section-note {
+    text-align: left;
+    font-size: 0.85em;
+    color: #62809a;
+    margin: 12px 0 0;
+}
+
+.section-note a, .paper-link-plain {
+    color: #4ab8d8;
+    text-decoration: none;
+}
+
+.section-note a:hover, .paper-link-plain:hover { text-decoration: underline; }
+
+/* Publication type tag */
+.pub-tag {
+    font-size: 0.72em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4a6880;
+    border: 1px solid rgba(45, 100, 140, 0.40);
+    border-radius: 3px;
+    padding: 1px 7px;
+}
+
+/* ── Student guide: research areas ─────────────────────────────── */
+.area-list {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.area-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: 0.91em;
+    line-height: 1.6;
+    color: #90a8b8;
+}
+
+.area-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #3ecfa0;
+}
+
+.area-list strong { color: #b0cce0; font-weight: 600; }
+
+/* ── Student guide: numbered steps ─────────────────────────────── */
+.steps-list {
+    text-align: left;
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 0;
+}
+
+.steps-list .step-card {
+    counter-increment: step;
+    position: relative;
+    padding-left: 46px;
+    margin-bottom: 20px;
+}
+
+.steps-list .step-card::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(10, 18, 34, 0.90);
+    border: 1px solid rgba(45, 180, 130, 0.55);
+    color: #3ecfa0;
+    font-size: 0.82em;
+    font-weight: 600;
+}
+
+.steps-list .step-card h4 {
+    margin: 4px 0 6px;
+    color: #3ecfa0;
+    font-size: 1em;
+}
+
+.steps-list .step-card p {
+    margin: 0;
+    font-size: 0.91em;
+    line-height: 1.6;
+    color: #90a8b8;
+}
+
+/* ── Checklist ─────────────────────────────────────────────────── */
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checklist li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 8px;
+    font-size: 0.91em;
+    line-height: 1.55;
+    color: #90a8b8;
+}
+
+.checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #3ecfa0;
+    font-size: 0.9em;
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+    .container { padding: 26px 20px; width: 94%; margin: 10px; }
+    .links a, .back-btn { display: block; margin: 8px 0; }
+    .pub-meta { flex-direction: column; gap: 4px; align-items: flex-start; }
+}
+
+/* section-note keeps its own styling inside a card */
+.project-card p.section-note {
+    color: #62809a;
+    margin: 14px 0 0;
+    font-size: 0.85em;
+}

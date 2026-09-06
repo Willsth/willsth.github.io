@@ -32,13 +32,18 @@ python3 export_eeg.py
 
 ## Architecture
 
-Two-page site sharing a single stylesheet:
+Multi-page site sharing a single stylesheet:
 
-- `index.html` — landing page with profile photo, title, and links to LinkedIn, Google Scholar, and the projects page
-- `projects.html` — lists student project/thesis opportunities, each as a `.project-card` with paper reference links
+- `index.html` — landing page with profile photo, title, research blurb, and links to LinkedIn, Google Scholar, publications, and the students page
+- `publications.html` — publication list grouped under `.section-title` headings ("Preprints & Under Review", "Peer-Reviewed"), each entry a `.project-card` with `.pub-meta` / `.pub-authors` / `.pub-venue` and a `.paper-links` block
+- `students.html` — a guide to starting a supervised project: research areas (`.area-list`), a numbered `.steps-list` of how a project gets started, a `.checklist` of what to send in a first email, report template downloads, and mutual expectations. Deliberately does **not** list specific project topics.
+- `projects.html` — meta-refresh stub redirecting to `students.html` (keeps previously shared links working); do not add content here
+- `templates/` — LaTeX and Typst student report templates linked from `students.html`; see `templates/README.md` for the expected filenames
 - `style.css` — dark theme; canvas `#eeg-bg` is `position: fixed` behind all content
 
 ## Conventions
 
-- Color palette: `#0e6fa8` (primary blue), `#3ecfa0` (teal for project card accents), `#080d18` (background)
-- New project cards go inside `.projects-list` in `projects.html`, following the existing `.project-card` pattern with a `.paper-links` block for arXiv references
+- Color palette: `#0e6fa8` (primary blue), `#3ecfa0` (teal for card accents and list markers), `#080d18` (background)
+- New publications go inside the appropriate `.projects-list` in `publications.html`, following the existing `.project-card` pattern; use `.pub-citations` for published work and `.pub-tag` for a type badge (Preprint, Abstract)
+- Author lists bold the site owner: `<strong>W Lehn-Schiøler</strong>`
+- Cards, section headings, and lists are shared across pages — reuse `.section-title`, `.section-lead`, and `.section-note` rather than adding page-specific styles

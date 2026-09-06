@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Students | William Theodor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="eeg-bg"></canvas>
+    <div class="container">
+        <h1>For Students</h1>
+        <p class="page-intro">I co-supervise special courses, synthesis projects, and BSc/MSc theses at DTU, in collaboration with <a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a>. This page describes how a project with me gets started and what you can expect along the way — rather than a fixed catalogue of topics.</p>
+
+        <!-- ── Research areas ─────────────────────────────────────────── -->
+        <h3 class="section-title">What we work on</h3>
+        <p class="section-lead">Projects sit somewhere in the space between machine learning research and clinical EEG. Broad directions include:</p>
+        <ul class="area-list">
+            <li><strong>Foundation models for EEG</strong> — self-supervised pretraining, architectures, scaling, evaluation.</li>
+            <li><strong>Interpretability &amp; XAI</strong> — understanding what these models actually represent, and making that usable for clinicians.</li>
+            <li><strong>Clinical translation</strong> — robustness, deployment on low-cost hardware, and use in resource-limited settings.</li>
+            <li><strong>Signal processing &amp; data quality</strong> — preprocessing, artefact handling, montage and electrode issues at scale.</li>
+        </ul>
+        <p class="section-note">The concrete question is something we shape together. Bring your own idea if you have one — the best projects usually start from something the student genuinely wants to know.</p>
+
+        <!-- ── Steps ──────────────────────────────────────────────────── -->
+        <h3 class="section-title">How we get started</h3>
+        <ol class="steps-list">
+
+            <li class="step-card">
+                <h4>Get in touch early</h4>
+                <p>Reach out well before the project period starts — ideally 1–2 months ahead. Popular periods fill up, and good scoping takes a few conversations.</p>
+            </li>
+
+            <li class="step-card">
+                <h4>Send a short introduction</h4>
+                <p>A few paragraphs is enough. See the checklist below for what helps me answer quickly.</p>
+            </li>
+
+            <li class="step-card">
+                <h4>An informal first meeting</h4>
+                <p>We talk through your interests, your background, and which of the directions above could fit. No preparation needed beyond having skimmed a paper or two.</p>
+            </li>
+
+            <li class="step-card">
+                <h4>Scope the project together</h4>
+                <p>You write a one-page proposal: research question, data, method, rough milestones, and what "done" looks like. We iterate on it until it is realistic for the number of ECTS you have.</p>
+            </li>
+
+            <li class="step-card">
+                <h4>Formalities</h4>
+                <p>We register the project at DTU with the appropriate main supervisor, sort out any agreements needed for data or company collaboration, and get you access to data and compute.</p>
+            </li>
+
+            <li class="step-card">
+                <h4>Run the project</h4>
+                <p>Weekly or biweekly one-on-ones, plus the option to join the group's research meetings. You are welcome to sit with the team rather than work alone.</p>
+            </li>
+
+            <li class="step-card">
+                <h4>Write up — and, where it fits, publish</h4>
+                <p>Reports are written in the templates below. Strong projects have led to workshop and conference papers, and I am happy to push in that direction when the results support it.</p>
+            </li>
+
+        </ol>
+
+        <!-- ── What to send ───────────────────────────────────────────── -->
+        <h3 class="section-title">What to include in your first email</h3>
+        <div class="project-card">
+            <ul class="checklist">
+                <li>Your programme, year, and expected project period.</li>
+                <li>Number of ECTS and the project type (special course, synthesis, BSc, MSc thesis).</li>
+                <li>Relevant courses and any hands-on experience with deep learning, signal processing, or biosignals.</li>
+                <li>What draws you to this area — a paper, a direction, or a question of your own.</li>
+                <li>Your CV and transcript, if you have them at hand.</li>
+            </ul>
+            <p class="section-note">Write to <a href="mailto:wls@braincapture.dk" class="paper-link-plain">wls@braincapture.dk</a>. If you do not hear back within a week, do send a reminder — it is not a no.</p>
+        </div>
+
+        <!-- ── Templates ──────────────────────────────────────────────── -->
+        <!-- TODO: upload the template files to templates/ and check these filenames match. -->
+        <h3 class="section-title">Report templates</h3>
+        <p class="section-lead">Start from one of these rather than a blank document. They carry the structure I expect in a report, along with sensible defaults for figures, references, and formatting.</p>
+
+        <div class="project-card">
+            <h4>LaTeX template</h4>
+            <p>The conventional choice, and the right one if you may later turn the report into a paper.</p>
+            <div class="paper-links">
+                <a href="templates/report-template-latex.zip" class="paper-link" download>Download (.zip)</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h4>Typst template</h4>
+            <p>A modern alternative with much faster compilation. Recommended if you have not committed to LaTeX already.</p>
+            <div class="paper-links">
+                <a href="templates/report-template-typst.zip" class="paper-link" download>Download (.zip)</a>
+            </div>
+        </div>
+
+        <!-- ── Expectations ───────────────────────────────────────────── -->
+        <h3 class="section-title">Expectations, both ways</h3>
+        <div class="project-card">
+            <h4>What I expect from you</h4>
+            <p>Independence and initiative — you drive the project, I help you steer. Come to meetings with something concrete: a result, a plot, or a specific question. Keep your code in version control from day one, and say so early when something is not working.</p>
+        </div>
+        <div class="project-card">
+            <h4>What you can expect from me</h4>
+            <p>Regular meetings and quick feedback on drafts. Access to real clinical EEG data, GPU compute, and the models we work on. Honest guidance on what is worth pursuing, and support in turning good results into a publication.</p>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </div>
+    <script src="eeg-animation.js"></script>
+</body>
+</html>
