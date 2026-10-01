@@ -1,0 +1,56 @@
+# Publication list for the CV (cv.typ reads this file).
+# Keep in sync with publications.html. `citations` is optional; set it to
+# the Google Scholar count for published work — an automated updater can
+# rewrite just these fields and re-run `typst compile`.
+
+preprints:
+  - title: "Real-Time EEG Cap Electrode Detection for Guided Point-of-Care Placement"
+    authors: "W Lehn-Schiøler, MS Nilsson, NS Detlefsen"
+    venue: "arXiv:2607.20142"
+    year: 2026
+    url: "https://arxiv.org/abs/2607.20142"
+
+  - title: "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders"
+    authors: "W Lehn-Schiøler, MR Kjær, R Thapa, MG Pedersen, AM Storgaard, N Williams, R Gatej, T Lehn-Schiøler, A Brink-Kjær, S Puthusserypady, S Beniczky, J Zou, LK Hansen"
+    venue: "arXiv:2605.13930"
+    year: 2026
+    url: "https://arxiv.org/abs/2605.13930"
+
+  - title: "Clinical Utility and Feasibility of Smartphone-based EEG in Kenya: A Multicenter Observational Study"
+    authors: "W Lehn-Schiøler, N Enkhtsetseg, AM Storgaard, MG Pedersen, D Rice, G Wambugu, NJ Fidele, M Cacic Hribljan, AA Arbune, S Armand Larsen, S Beniczky"
+    venue: "arXiv:2605.08157"
+    year: 2026
+    url: "https://arxiv.org/abs/2605.08157"
+
+  - title: "Pretraining on Sleep Data Improves non-Sleep Biosignal Tasks"
+    authors: "W Lehn-Schiøler, MR Kjær, P Hempel, MG Pedersen, R Thapa, B He, N Spicher, A Brink-Kjær, LK Hansen, E Mignot"
+    venue: "arXiv:2605.02500"
+    year: 2026
+    url: "https://arxiv.org/abs/2605.02500"
+
+peer_reviewed:
+  - title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya"
+    authors: "N Enkhtsetseg, W Lehn-Schiøler, NJ Fidele, T Lehn-Schiøler, et al."
+    venue: "Neurology 106 (11_Suppl. 1), AAN Annual Meeting (abstract)"
+    year: 2026
+
+  - title: "Low-cost portable EEG device for bridging the diagnostic gap in resource-limited areas"
+    authors: "S Armand Larsen, L Klok, W Lehn-Schiøler, R Gatej, S Beniczky"
+    venue: "Epileptic Disorders 26 (5), 694–700"
+    year: 2024
+    citations: 24
+    url: "https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266"
+
+  - title: "SPEED: Scalable Preprocessing of EEG Data for Self-Supervised Learning"
+    authors: "A Gjølbye, L Skerath, W Lehn-Schiøler, N Langer, LK Hansen"
+    venue: "IEEE MLSP 2024"
+    year: 2024
+    citations: 4
+    url: "https://arxiv.org/abs/2408.08065"
+
+  - title: "Concept-based explainability for an EEG transformer model"
+    authors: "AG Madsen, W Lehn-Schiøler, Á Jónsdóttir, B Arnardóttir, LK Hansen"
+    venue: "IEEE MLSP 2023"
+    year: 2023
+    citations: 14
+    url: "https://arxiv.org/abs/2307.12745"

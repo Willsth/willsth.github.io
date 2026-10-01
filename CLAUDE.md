@@ -37,6 +37,8 @@ Multi-page site sharing a single stylesheet:
 - `index.html` — landing page with profile photo, title, research blurb, and links to LinkedIn, Google Scholar, publications, and the students page
 - `publications.html` — publication list grouped under `.section-title` headings ("Preprints & Under Review", "Peer-Reviewed"), each entry a `.project-card` with `.pub-meta` / `.pub-authors` / `.pub-venue` and a `.paper-links` block
 - `students.html` — a guide to starting a supervised project: research areas (`.area-list`), a numbered `.steps-list` of how a project gets started, a `.checklist` of what to send in a first email, report template downloads, and mutual expectations. Deliberately does **not** list specific project topics.
+- `cv.html` — web version of the CV (Experience, Education, Volunteer, Publications summary) with a download button for `cv.pdf`; keep its content in sync with `cv/cv.typ`
+- `cv/cv.typ` — Typst source for the two-page `cv.pdf`; publications come from `cv/publications.yaml` (keep in sync with `publications.html`). Rebuild with `typst compile --root . cv/cv.typ cv.pdf` and commit the PDF
 - `projects.html` — meta-refresh stub redirecting to `students.html` (keeps previously shared links working); do not add content here
 - `templates/` — LaTeX and Typst student report templates linked from `students.html`; see `templates/README.md` for the expected filenames
 - `style.css` — dark theme; canvas `#eeg-bg` is `position: fixed` behind all content
