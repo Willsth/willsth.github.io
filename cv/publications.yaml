@@ -10,12 +10,6 @@ preprints:
     year: 2026
     url: "https://arxiv.org/abs/2607.20142"
 
-  - title: "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders"
-    authors: "W Lehn-Schiøler, MR Kjær, R Thapa, MG Pedersen, AM Storgaard, N Williams, R Gatej, T Lehn-Schiøler, A Brink-Kjær, S Puthusserypady, S Beniczky, J Zou, LK Hansen"
-    venue: "arXiv:2605.13930"
-    year: 2026
-    url: "https://arxiv.org/abs/2605.13930"
-
   - title: "Clinical Utility and Feasibility of Smartphone-based EEG in Kenya: A Multicenter Observational Study"
     authors: "W Lehn-Schiøler, N Enkhtsetseg, AM Storgaard, MG Pedersen, D Rice, G Wambugu, NJ Fidele, M Cacic Hribljan, AA Arbune, S Armand Larsen, S Beniczky"
     venue: "arXiv:2605.08157"
@@ -29,6 +23,12 @@ preprints:
     url: "https://arxiv.org/abs/2605.02500"
 
 peer_reviewed:
+  - title: "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders"
+    authors: "W Lehn-Schiøler, MR Kjær, R Thapa, MG Pedersen, AM Storgaard, N Williams, R Gatej, T Lehn-Schiøler, A Brink-Kjær, S Puthusserypady, S Beniczky, J Zou, LK Hansen"
+    venue: "NeurIPS 2026 (to appear)"
+    year: 2026
+    url: "https://arxiv.org/abs/2605.13930"
+
   - title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya"
     authors: "N Enkhtsetseg, W Lehn-Schiøler, NJ Fidele, T Lehn-Schiøler, et al."
     venue: "Neurology 106 (11_Suppl. 1), AAN Annual Meeting (abstract)"

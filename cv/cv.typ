@@ -128,6 +128,8 @@
 // ── Education ──────────────────────────────────────────────────────
 #section("Education")
 
+#entry("Technical University of Denmark", role: "PhD, DTU Health Tech (Digital Health)", "Sep 2025 – present",
+  body: [Industrial PhD in collaboration with BrainCapture — EEG foundation models and interpretability.])
 #entry("Technical University of Denmark", role: "MSc Mathematical Modelling and Computing", "Sep 2022 – Dec 2024")
 #entry("École Polytechnique – Université Paris-Saclay", role: "Exchange semester", "Sep 2021 – Jan 2022",
   body: [Double Majeure Mathématiques & Informatique])
