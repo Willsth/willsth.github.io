@@ -1,24 +1,31 @@
-# Publication list for the CV (cv.typ reads this file).
-# Keep in sync with publications.html. `citations` is optional; set it to
-# the Google Scholar count for published work — an automated updater can
-# rewrite just these fields and re-run `typst compile`.
+# Single source for publications: cv/cv.typ reads it for cv.pdf, and
+# scripts/build_publications.py renders publications.html from it.
+#
+#   venue      short form for the CV
+#   web_venue  longer form for publications.html (falls back to venue)
+#   tag        optional badge on the web page (preprints are tagged automatically)
+#   citations  Google Scholar count — rewritten weekly by scripts/update_citations.py
+#              for peer-reviewed entries; do not hand-edit unless needed
 
 preprints:
   - title: "Real-Time EEG Cap Electrode Detection for Guided Point-of-Care Placement"
     authors: "W Lehn-Schiøler, MS Nilsson, NS Detlefsen"
     venue: "arXiv:2607.20142"
+    web_venue: "arXiv:2607.20142 · July 2026"
     year: 2026
     url: "https://arxiv.org/abs/2607.20142"
 
   - title: "Clinical Utility and Feasibility of Smartphone-based EEG in Kenya: A Multicenter Observational Study"
     authors: "W Lehn-Schiøler, N Enkhtsetseg, AM Storgaard, MG Pedersen, D Rice, G Wambugu, NJ Fidele, M Cacic Hribljan, AA Arbune, S Armand Larsen, S Beniczky"
     venue: "arXiv:2605.08157"
+    web_venue: "arXiv:2605.08157 · May 2026"
     year: 2026
     url: "https://arxiv.org/abs/2605.08157"
 
   - title: "Pretraining on Sleep Data Improves non-Sleep Biosignal Tasks"
     authors: "W Lehn-Schiøler, MR Kjær, P Hempel, MG Pedersen, R Thapa, B He, N Spicher, A Brink-Kjær, LK Hansen, E Mignot"
     venue: "arXiv:2605.02500"
+    web_venue: "arXiv:2605.02500 · May 2026"
     year: 2026
     url: "https://arxiv.org/abs/2605.02500"
 
@@ -26,17 +33,21 @@ peer_reviewed:
   - title: "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders"
     authors: "W Lehn-Schiøler, MR Kjær, R Thapa, MG Pedersen, AM Storgaard, N Williams, R Gatej, T Lehn-Schiøler, A Brink-Kjær, S Puthusserypady, S Beniczky, J Zou, LK Hansen"
     venue: "NeurIPS 2026 (to appear)"
+    web_venue: "NeurIPS 2026 · Conference on Neural Information Processing Systems (to appear)"
     year: 2026
     url: "https://arxiv.org/abs/2605.13930"
 
   - title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya"
     authors: "N Enkhtsetseg, W Lehn-Schiøler, NJ Fidele, T Lehn-Schiøler, et al."
     venue: "Neurology 106 (11_Suppl. 1), AAN Annual Meeting (abstract)"
+    web_venue: "Neurology, vol. 106 (11_Supplement_1), 3407 · AAN Annual Meeting abstract (P2-10.001)"
+    tag: "Abstract"
     year: 2026
 
   - title: "Low-cost portable EEG device for bridging the diagnostic gap in resource-limited areas"
     authors: "S Armand Larsen, L Klok, W Lehn-Schiøler, R Gatej, S Beniczky"
     venue: "Epileptic Disorders 26 (5), 694–700"
+    web_venue: "Epileptic Disorders, vol. 26 (5), pp. 694–700"
     year: 2024
     citations: 24
     url: "https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266"
@@ -44,6 +55,7 @@ peer_reviewed:
   - title: "SPEED: Scalable Preprocessing of EEG Data for Self-Supervised Learning"
     authors: "A Gjølbye, L Skerath, W Lehn-Schiøler, N Langer, LK Hansen"
     venue: "IEEE MLSP 2024"
+    web_venue: "IEEE MLSP 2024 · International Workshop on Machine Learning for Signal Processing"
     year: 2024
     citations: 4
     url: "https://arxiv.org/abs/2408.08065"
@@ -51,6 +63,7 @@ peer_reviewed:
   - title: "Concept-based explainability for an EEG transformer model"
     authors: "AG Madsen, W Lehn-Schiøler, Á Jónsdóttir, B Arnardóttir, LK Hansen"
     venue: "IEEE MLSP 2023"
+    web_venue: "IEEE MLSP 2023 · International Workshop on Machine Learning for Signal Processing"
     year: 2023
     citations: 14
     url: "https://arxiv.org/abs/2307.12745"

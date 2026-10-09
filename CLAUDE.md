@@ -35,10 +35,13 @@ python3 export_eeg.py
 Multi-page site sharing a single stylesheet:
 
 - `index.html` — landing page with profile photo, title, research blurb, and links to LinkedIn, Google Scholar, publications, and the students page
-- `publications.html` — publication list grouped under `.section-title` headings ("Preprints & Under Review", "Peer-Reviewed"), each entry a `.project-card` with `.pub-meta` / `.pub-authors` / `.pub-venue` and a `.paper-links` block
+- `publications.html` — **generated** by `scripts/build_publications.py` from `cv/publications.yaml`; do not edit by hand. Publication list grouped under `.section-title` headings ("Preprints & Under Review", "Peer-Reviewed"), each entry a `.project-card` with `.pub-meta` / `.pub-authors` / `.pub-venue` and a `.paper-links` block
 - `students.html` — a guide to starting a supervised project: research areas (`.area-list`), a numbered `.steps-list` of how a project gets started, a `.checklist` of what to send in a first email, report template downloads, and mutual expectations. Deliberately does **not** list specific project topics.
 - `cv.html` — web version of the CV (Experience, Education, Volunteer, Publications summary) with a download button for `cv.pdf`; keep its content in sync with `cv/cv.typ`
-- `cv/cv.typ` — Typst source for the two-page `cv.pdf`; publications come from `cv/publications.yaml` (keep in sync with `publications.html`). Rebuild with `typst compile --root . cv/cv.typ cv.pdf` and commit the PDF
+- `cv/cv.typ` — Typst source for the two-page `cv.pdf`; publications come from `cv/publications.yaml`. Rebuild with `typst compile --root . cv/cv.typ cv.pdf` and commit the PDF
+- `cv/publications.yaml` — single source for publications (CV and web page). `venue` is the short CV form, `web_venue` the longer web form, `tag` an optional badge
+- `scripts/update_citations.py` — refreshes `citations` for peer-reviewed entries from Google Scholar via SerpAPI (needs `SERPAPI_KEY`); lists Scholar papers missing from the YAML but never adds them
+- `.github/workflows/update-publications.yml` — runs the updater every Monday (or manually from the Actions tab), and if counts changed rebuilds `publications.html` and `cv.pdf` and pushes. Uses the `SERPAPI_KEY` repo secret
 - `projects.html` — meta-refresh stub redirecting to `students.html` (keeps previously shared links working); do not add content here
 - `templates/` — LaTeX and Typst student report templates linked from `students.html`; see `templates/README.md` for the expected filenames
 - `style.css` — dark theme; canvas `#eeg-bg` is `position: fixed` behind all content
@@ -46,6 +49,6 @@ Multi-page site sharing a single stylesheet:
 ## Conventions
 
 - Color palette: `#0e6fa8` (primary blue), `#3ecfa0` (teal for card accents and list markers), `#080d18` (background)
-- New publications go inside the appropriate `.projects-list` in `publications.html`, following the existing `.project-card` pattern; use `.pub-citations` for published work and `.pub-tag` for a type badge (Preprint, Abstract)
+- New publications go in `cv/publications.yaml` (under `preprints` or `peer_reviewed`), then run `python3 scripts/build_publications.py` and rebuild `cv.pdf`; the generator renders `.pub-citations` for published work and `.pub-tag` for a type badge (Preprint, Abstract)
 - Author lists bold the site owner: `<strong>W Lehn-Schiøler</strong>`
 - Cards, section headings, and lists are shared across pages — reuse `.section-title`, `.section-lead`, and `.section-note` rather than adding page-specific styles
