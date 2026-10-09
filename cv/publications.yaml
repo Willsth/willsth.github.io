@@ -35,6 +35,7 @@ peer_reviewed:
     venue: "NeurIPS 2026 (to appear)"
     web_venue: "NeurIPS 2026 · Conference on Neural Information Processing Systems (to appear)"
     year: 2026
+    citations: 4
     url: "https://arxiv.org/abs/2605.13930"
 
   - title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya"
@@ -49,7 +50,7 @@ peer_reviewed:
     venue: "Epileptic Disorders 26 (5), 694–700"
     web_venue: "Epileptic Disorders, vol. 26 (5), pp. 694–700"
     year: 2024
-    citations: 24
+    citations: 25
     url: "https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266"
 
   - title: "SPEED: Scalable Preprocessing of EEG Data for Self-Supervised Learning"
@@ -65,5 +66,5 @@ peer_reviewed:
     venue: "IEEE MLSP 2023"
     web_venue: "IEEE MLSP 2023 · International Workshop on Machine Learning for Signal Processing"
     year: 2023
-    citations: 14
+    citations: 16
     url: "https://arxiv.org/abs/2307.12745"
