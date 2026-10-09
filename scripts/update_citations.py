@@ -1,6 +1,7 @@
 """Refresh Google Scholar citation counts in cv/publications.yaml via SerpAPI.
 
-Only peer-reviewed entries are updated, matched to Scholar articles by title.
+Only peer-reviewed entries are updated, matched to Scholar articles by title
+(or by `scholar_title` when Scholar lists the paper under a different title).
 Scholar articles that match nothing in the YAML are listed as possible new
 papers, but never added automatically.
 
@@ -66,11 +67,11 @@ def main():
     text = YAML_PATH.read_text(encoding="utf-8")
     data = yaml.safe_load(text)
     scholar = fetch_articles(key)
-    known = {norm(p["title"]) for group in data.values() for p in group}
+    known = {norm(p.get("scholar_title", p["title"])) for group in data.values() for p in group}
 
     changes = []
     for p in data["peer_reviewed"]:
-        match = scholar.get(norm(p["title"]))
+        match = scholar.get(norm(p.get("scholar_title", p["title"])))
         if match is None:
             print(f"not on Scholar profile: {p['title']}")
             continue

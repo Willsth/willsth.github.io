@@ -4,6 +4,7 @@
 #   venue      short form for the CV
 #   web_venue  longer form for publications.html (falls back to venue)
 #   tag        optional badge on the web page (preprints are tagged automatically)
+#   scholar_title  exact Google Scholar title, only when it differs from `title`
 #   citations  Google Scholar count — rewritten weekly by scripts/update_citations.py
 #              for peer-reviewed entries; do not hand-edit unless needed
 
@@ -15,7 +16,7 @@ preprints:
     year: 2026
     url: "https://arxiv.org/abs/2607.20142"
 
-  - title: "Clinical Utility and Feasibility of Smartphone-based EEG in Kenya: A Multicenter Observational Study"
+  - title: "Clinical Feasibility of Smartphone-based EEG in Kenya"
     authors: "W Lehn-Schiøler, N Enkhtsetseg, AM Storgaard, MG Pedersen, D Rice, G Wambugu, NJ Fidele, M Cacic Hribljan, AA Arbune, S Armand Larsen, S Beniczky"
     venue: "arXiv:2605.08157"
     web_venue: "arXiv:2605.08157 · May 2026"
@@ -43,6 +44,7 @@ peer_reviewed:
     venue: "Neurology 106 (11_Suppl. 1), AAN Annual Meeting (abstract)"
     web_venue: "Neurology, vol. 106 (11_Supplement_1), 3407 · AAN Annual Meeting abstract (P2-10.001)"
     tag: "Abstract"
+    scholar_title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya (P2-10.001)"
     year: 2026
 
   - title: "Low-cost portable EEG device for bridging the diagnostic gap in resource-limited areas"
