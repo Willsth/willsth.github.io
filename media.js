@@ -1,4 +1,5 @@
-// Click-to-load video (YouTube embeds and self-hosted clips) and enlargeable paper figures.
+// Click-to-load video (YouTube embeds and self-hosted clips), enlargeable paper figures,
+// and the "Cite" panels with copy buttons.
 // Nothing is requested from YouTube until a visitor presses play; without JavaScript the
 // posters, figures and "Video" chips are plain links.
 (function () {
@@ -68,6 +69,31 @@
             local.replaceChildren(video);
             local.removeAttribute('href');
             local.removeAttribute('data-src');   // later clicks belong to the player's own controls
+            return;
+        }
+
+        // <button class="chip" aria-controls="cite-…"> → show or hide the citation panel
+        const toggle = e.target.closest('button.chip[aria-controls]');
+        if (toggle) {
+            const open = toggle.getAttribute('aria-expanded') !== 'true';
+            toggle.setAttribute('aria-expanded', open);
+            document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+            return;
+        }
+
+        // <button class="copy"> → copy the reference or BibTeX next to it
+        const copy = e.target.closest('button.copy');
+        if (copy) {
+            const text = copy.closest('.cite-block').querySelector('.cite-text');
+            const done = () => {
+                copy.textContent = 'Copied';
+                copy.classList.add('is-done');
+                setTimeout(() => { copy.textContent = 'Copy'; copy.classList.remove('is-done'); }, 1600);
+            };
+            navigator.clipboard.writeText(text.textContent).then(done, () => {
+                // No clipboard access (e.g. insecure context): select the text for a manual copy
+                getSelection().selectAllChildren(text);
+            });
             return;
         }
 

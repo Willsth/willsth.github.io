@@ -17,6 +17,9 @@
 #              drawn on #fbfaf8, with optional figure_poster (still frame); add
 #              figure_dark (+ figure_dark_poster) for a dark version drawn on #0e1114
 #   pdf, code, project, poster, slides   extra links shown as buttons
+#   bib        details for the "Cite" button (BibTeX + reference); preprints with an
+#              arXiv url need none. type: article | inproceedings | misc, plus
+#              journal or booktitle, volume, number, pages (694--700), doi, note
 
 preprints:
   - title: "Real-Time EEG Cap Electrode Detection for Guided Point-of-Care Placement"
@@ -56,6 +59,10 @@ peer_reviewed:
     authors: "W Lehn-Schiøler, MR Kjær, R Thapa, MG Pedersen, AM Storgaard, N Williams, R Gatej, T Lehn-Schiøler, A Brink-Kjær, S Puthusserypady, S Beniczky, J Zou, LK Hansen"
     venue: "NeurIPS 2026 (to appear)"
     web_venue: "NeurIPS 2026 · Conference on Neural Information Processing Systems (to appear)"
+    bib:
+      type: inproceedings
+      booktitle: "Advances in Neural Information Processing Systems"
+      note: "To appear"
     year: 2026
     citations: 4
     url: "https://arxiv.org/abs/2605.13930"
@@ -64,6 +71,13 @@ peer_reviewed:
     authors: "N Enkhtsetseg, W Lehn-Schiøler, NJ Fidele, T Lehn-Schiøler, et al."
     venue: "Neurology 106 (11_Suppl. 1), AAN Annual Meeting (abstract)"
     web_venue: "Neurology, vol. 106 (11_Supplement_1), 3407 · AAN Annual Meeting abstract (P2-10.001)"
+    bib:
+      type: article
+      journal: "Neurology"
+      volume: 106
+      number: "11_Supplement_1"
+      pages: "3407"
+      note: "AAN Annual Meeting abstract P2-10.001"
     tag: "Abstract"
     scholar_title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya (P2-10.001)"
     year: 2026
@@ -74,6 +88,13 @@ peer_reviewed:
     authors: "S Armand Larsen, L Klok, W Lehn-Schiøler, R Gatej, S Beniczky"
     venue: "Epileptic Disorders 26 (5), 694–700"
     web_venue: "Epileptic Disorders, vol. 26 (5), pp. 694–700"
+    bib:
+      type: article
+      journal: "Epileptic Disorders"
+      volume: 26
+      number: 5
+      pages: "694--700"
+      doi: "10.1002/epd2.20266"
     year: 2024
     citations: 25
     url: "https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266"
@@ -82,6 +103,9 @@ peer_reviewed:
     authors: "A Gjølbye, L Skerath, W Lehn-Schiøler, N Langer, LK Hansen"
     venue: "IEEE MLSP 2024"
     web_venue: "IEEE MLSP 2024 · International Workshop on Machine Learning for Signal Processing"
+    bib:
+      type: inproceedings
+      booktitle: "IEEE International Workshop on Machine Learning for Signal Processing (MLSP)"
     year: 2024
     citations: 4
     url: "https://arxiv.org/abs/2408.08065"
@@ -90,6 +114,9 @@ peer_reviewed:
     authors: "AG Madsen, W Lehn-Schiøler, Á Jónsdóttir, B Arnardóttir, LK Hansen"
     venue: "IEEE MLSP 2023"
     web_venue: "IEEE MLSP 2023 · International Workshop on Machine Learning for Signal Processing"
+    bib:
+      type: inproceedings
+      booktitle: "IEEE International Workshop on Machine Learning for Signal Processing (MLSP)"
     year: 2023
     citations: 16
     url: "https://arxiv.org/abs/2307.12745"

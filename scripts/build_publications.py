@@ -1,5 +1,5 @@
 """Render publications.html, and the generated blocks of index.html, from
-cv/publications.yaml and cv/media.yaml.
+cv/publications.yaml, cv/media.yaml and cv/metrics.json.
 
 index.html is hand-written except between these marker pairs, which are replaced:
     <!-- BEGIN selected-publications --> ... <!-- END selected-publications -->
@@ -9,7 +9,10 @@ Usage (from the repo root):
     python3 scripts/build_publications.py
 """
 
+import json
+import math
 import re
+from datetime import date
 from html import escape
 from pathlib import Path
 
@@ -71,10 +74,12 @@ HEAD = """<!DOCTYPE html>
     </div>
 
     <main class="wrap">
-        <section class="section">
+""".format(scholar=escape(SCHOLAR))
+
+PAPERS = """        <section class="section">
             <h2 class="section-title">Papers</h2>
             <div class="section-body">
-""".format(scholar=escape(SCHOLAR))
+"""
 
 FOOT = """            </div>
         </section>
@@ -123,9 +128,101 @@ def figure(p, indent):
             f'aria-label="Enlarge figure">{media}</a>{caption}</figure>')
 
 
+ASCII = str.maketrans({"ø": "o", "Ø": "O", "æ": "ae", "Æ": "Ae", "å": "aa", "Å": "Aa"})
+
+
+def split_authors(authors):
+    """'W Lehn-Schiøler, MR Kjær, et al.' -> ([('Lehn-Schiøler', 'W'), ('Kjær', 'MR')], True)."""
+    names, et_al = [], False
+    for a in (x.strip() for x in authors.split(",")):
+        if a.rstrip(".") == "et al":
+            et_al = True
+        else:
+            initials, surname = a.split(" ", 1)
+            names.append((surname, initials))
+    return names, et_al
+
+
+def person(surname, initials):
+    return f"{surname}, {' '.join(i + '.' for i in initials)}"
+
+
+def arxiv_id(p):
+    m = re.search(r"arxiv\.org/abs/([\w.]+)", p.get("url", ""))
+    return m.group(1) if m else None
+
+
+def cite_key(p):
+    surname = split_authors(p["authors"])[0][0][0].translate(ASCII)
+    word = next((w for w in re.findall(r"[A-Za-z]+", p["title"]) if len(w) > 3), "paper")
+    return re.sub(r"[^a-z]", "", surname.lower()) + str(p["year"]) + word.lower()
+
+
+def bibtex(p, preprint):
+    """BibTeX from the entry's `bib` fields (type, journal/booktitle, volume, number, pages, doi, note)."""
+    bib = dict(p.get("bib") or {})
+    kind = bib.pop("type", "misc" if preprint else "article")
+    names, et_al = split_authors(p["authors"])
+    fields = {
+        # Brace all-caps words (EEG, SPEED) so BibTeX styles keep their case
+        "title": re.sub(r"\b([A-Z]{2,}[\w-]*)", r"{\1}", p["title"]),
+        "author": " and ".join(person(*n) for n in names) + (" and others" if et_al else ""),
+        **{k: bib[k] for k in ("journal", "booktitle", "volume", "number", "pages") if k in bib},
+        "year": p["year"],
+        **{k: bib[k] for k in ("note", "doi") if k in bib},
+    }
+    if arxiv_id(p):
+        fields.update(eprint=arxiv_id(p), archivePrefix="arXiv")
+    if p.get("url"):
+        fields["url"] = p["url"]
+    body = ",\n".join(f"  {k:<13} = {{{v}}}" for k, v in fields.items())
+    return f"@{kind}{{{cite_key(p)},\n{body}\n}}"
+
+
+def reference(p, preprint):
+    """APA-style plain-text reference."""
+    bib = p.get("bib") or {}
+    names, et_al = split_authors(p["authors"])
+    people = [person(*n) for n in names]
+    if et_al:
+        authors = ", ".join(people) + ", et al."
+    elif len(people) > 1:
+        authors = ", ".join(people[:-1]) + ", & " + people[-1]
+    else:
+        authors = people[0]
+    ref = f"{authors} ({p['year']}). {p['title']}."
+    kind = bib.get("type", "misc" if preprint else "article")
+    if kind == "article":
+        ref += f" {bib['journal']}"
+        ref += f", {bib['volume']}" if "volume" in bib else ""
+        ref += f"({bib['number']})" if "number" in bib else ""
+        ref += f", {str(bib['pages']).replace('--', '–')}" if "pages" in bib else ""
+        ref += "."
+    elif kind == "inproceedings":
+        ref += f" In {bib['booktitle']}."
+    elif arxiv_id(p):
+        ref += f" arXiv preprint arXiv:{arxiv_id(p)}."
+    if bib.get("note"):
+        ref += f" {bib['note']}."
+    link = f"https://doi.org/{bib['doi']}" if bib.get("doi") else p.get("url")
+    return f"{ref} {link}" if link else ref
+
+
+def cite_panel(p, preprint, panel_id, indent):
+    block = ('<div class="cite-block"><div class="cite-head"><span>{label}</span>'
+             '<button type="button" class="copy">Copy</button></div>{text}</div>')
+    return (
+        f'{indent}<div class="cite-panel" id="{panel_id}" hidden>'
+        + block.format(label="Reference", text=f'<p class="cite-text">{escape(reference(p, preprint))}</p>')
+        + block.format(label="BibTeX", text=f'<pre class="cite-text">{escape(bibtex(p, preprint))}</pre>')
+        + "</div>"
+    )
+
+
 def pub_item(p, default_tag=None, summary=False, indent="                    ", heading="h3"):
     i1, i2, i3 = indent, indent + "    ", indent + "        "
     tag = p.get("tag", default_tag)
+    preprint = default_tag == "Preprint"
     authors = escape(p["authors"]).replace(OWNER, f"<strong>{OWNER}</strong>")
     title = escape(p["title"])
     if p.get("url"):
@@ -159,6 +256,8 @@ def pub_item(p, default_tag=None, summary=False, indent="                    ", 
             f'data-title="{escape(p["title"])}" aria-controls="{player}" aria-expanded="false" '
             f'target="_blank" rel="noopener noreferrer">▶ Video</a>'
         )
+    cite = f"cite-{slug(p['title'])}"
+    chip_html.append(f'<button type="button" class="chip" aria-controls="{cite}" aria-expanded="false">Cite</button>')
 
     cls = "pub has-figure" if p.get("figure") else "pub"
     lines = [
@@ -175,11 +274,13 @@ def pub_item(p, default_tag=None, summary=False, indent="                    ", 
     ]
     if chip_html:
         lines.append(f'{i3}<div class="chips">' + "".join(chip_html) + "</div>")
-    if player:
-        lines.append(f'{i3}<div class="pub-player" id="{player}" hidden></div>')
     lines.append(f"{i2}</div>")
     if p.get("figure"):
         lines.append(figure(p, i2))
+    # Full-width rows under the paper, spanning the text and figure columns
+    if player:
+        lines.append(f'{i2}<div class="pub-player" id="{player}" hidden></div>')
+    lines.append(cite_panel(p, preprint, cite, i2))
     lines.append(f"{i1}</li>")
     return "\n".join(lines)
 
@@ -252,6 +353,65 @@ def media_section(items):
     )
 
 
+def nice_scale(peak):
+    """Axis top and step giving at most four clean gridlines above zero."""
+    step = next(s for s in (m * 10 ** e for e in range(6) for m in (1, 2, 5)) if math.ceil(peak / s) <= 4)
+    return max(step, math.ceil(peak / step) * step), step
+
+
+def year_chart(per_year, current_year):
+    years = range(min(map(int, per_year)), max(int(y) for y in per_year) + 1)
+    counts = {y: per_year.get(str(y), 0) for y in years}
+    top, step = nice_scale(max(counts.values()) or 1)
+    ticks = "".join(
+        f'<span class="chart-gridline" style="bottom:{v / top * 100:.1f}%"><span>{v}</span></span>'
+        for v in range(0, top + 1, step)
+    )
+    bars, rows = [], []
+    last = max(years)
+    for y, n in counts.items():
+        label = f"{y} (to date)" if y == current_year else str(y)
+        cls = ' class="is-latest"' if y == last else ""
+        bars.append(
+            f'<li{cls} style="--h:{n / top * 100:.1f}%" title="{label}: {n} citation{"s" if n != 1 else ""}">'
+            f'<span class="bar-value">{n}</span><span class="bar"></span><span class="bar-label">{y}</span></li>'
+        )
+        rows.append(f"<tr><th scope=\"row\">{label}</th><td>{n}</td></tr>")
+    return (
+        '                <figure class="chart">\n'
+        '                    <figcaption class="chart-title">Citations per year</figcaption>\n'
+        f'                    <div class="chart-plot" aria-hidden="true">{ticks}<ol class="chart-bars">{"".join(bars)}</ol></div>\n'
+        '                    <table class="sr-only"><caption>Citations per year</caption>'
+        f'<tr><th scope="col">Year</th><th scope="col">Citations</th></tr>{"".join(rows)}</table>\n'
+        "                </figure>\n"
+    )
+
+
+def metrics_section(metrics, n_pubs):
+    """Scholar metrics panel from cv/metrics.json (written weekly by scripts/update_citations.py)."""
+    if not metrics:
+        return ""
+    updated = date.fromisoformat(metrics["updated"])
+    tiles = [("Citations", metrics["citations"]), ("h-index", metrics["h_index"]),
+             ("i10-index", metrics["i10_index"]), ("Publications", n_pubs)]
+    tile_html = "".join(
+        f'<div class="kpi"><span class="kpi-value">{v}</span><span class="kpi-label">{k}</span></div>'
+        for k, v in tiles
+    )
+    chart = year_chart(metrics["per_year"], updated.year) if metrics.get("per_year") else ""
+    return (
+        '        <section class="section" id="metrics">\n'
+        '            <h2 class="section-title">Metrics</h2>\n'
+        '            <div class="section-body">\n'
+        f'                <div class="kpis">{tile_html}</div>\n'
+        + chart
+        + f'                <p class="section-note">Source: <a href="{escape(SCHOLAR)}" target="_blank" rel="noopener noreferrer">Google Scholar</a>, '
+        f'updated {updated.day} {updated:%b %Y} and refreshed weekly. {updated.year} counts the year to date.</p>\n'
+        "            </div>\n"
+        "        </section>\n\n"
+    )
+
+
 def replace_block(html, name, content):
     pattern = re.compile(rf"(<!-- BEGIN {name} -->\n).*?([ \t]*<!-- END {name} -->)", re.S)
     if not pattern.search(html):
@@ -262,9 +422,13 @@ def replace_block(html, name, content):
 def main():
     data = yaml.safe_load((ROOT / "cv" / "publications.yaml").read_text(encoding="utf-8"))
     media = yaml.safe_load((ROOT / "cv" / "media.yaml").read_text(encoding="utf-8")) or {}
+    metrics_path = ROOT / "cv" / "metrics.json"
+    metrics = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.exists() else None
 
     html = (
         HEAD
+        + metrics_section(metrics, len(data["preprints"]) + len(data["peer_reviewed"]))
+        + PAPERS
         + group("Preprints &amp; under review", data["preprints"], default_tag="Preprint")
         + group("Peer-reviewed", data["peer_reviewed"])
         + FOOT

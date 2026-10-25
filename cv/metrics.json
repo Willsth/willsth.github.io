@@ -1,0 +1,20 @@
+{
+  "source": "Google Scholar",
+  "updated": "2026-10-25",
+  "citations": 55,
+  "h_index": 4,
+  "i10_index": 2,
+  "per_year": {
+    "2024": 3,
+    "2025": 21,
+    "2026": 31
+  },
+  "history": [
+    {
+      "date": "2026-10-25",
+      "citations": 55,
+      "h_index": 4,
+      "i10_index": 2
+    }
+  ]
+}
