@@ -896,3 +896,19 @@ pre.cite-text {
     .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
 }
 .chart + .section-note { margin-top: 28px; }
+
+/* ── Wide sections (paper lists) ───────────────────────────────────── */
+/* The label sits above and the list uses the full width, with a fixed visual
+   column on every paper so text and figures line up down the page */
+.section-wide { grid-template-columns: 1fr; gap: 20px; }
+.section-wide .section-body { max-width: none; }
+.section-wide .pub { grid-template-columns: 56px minmax(0, 1fr) 360px; column-gap: 32px; }
+
+@media (max-width: 860px) {
+    .section-wide .pub { grid-template-columns: 56px minmax(0, 1fr); }
+    .section-wide .pub-figure { grid-column: 2; max-width: 420px; }
+}
+@media (max-width: 600px) {
+    .section-wide .pub { grid-template-columns: 1fr; }
+    .section-wide .pub-figure { grid-column: auto; max-width: none; }
+}

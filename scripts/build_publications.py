@@ -76,7 +76,7 @@ HEAD = """<!DOCTYPE html>
     <main class="wrap">
 """.format(scholar=escape(SCHOLAR))
 
-PAPERS = """        <section class="section">
+PAPERS = """        <section class="section section-wide">
             <h2 class="section-title">Papers</h2>
             <div class="section-body">
 """
