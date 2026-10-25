@@ -1,0 +1,18 @@
+# Talks, interviews and demo videos, shown under "Talks & media" on the home page
+# (the section is hidden while this list is empty). Rebuild with
+#   python3 scripts/build_publications.py
+#
+#   title    shown under the video
+#   youtube  video ID or any YouTube URL
+#   kind     optional, e.g. Talk, Interview, Demo
+#   venue    optional, e.g. NeurIPS 2026
+#   date     optional, e.g. Dec 2026
+#
+# Example:
+#   - title: "Looking inside EEG foundation models with sparse autoencoders"
+#     youtube: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+#     kind: Talk
+#     venue: NeurIPS 2026
+#     date: Dec 2026
+
+media: []

@@ -2,8 +2,8 @@
 //   typst compile --root . cv/cv.typ cv.pdf
 // Publications come from cv/publications.yaml.
 
-#let blue = rgb("#0e6fa8")
-#let teal = rgb("#1f9e78")
+#let blue = rgb("#0b5c8c")   // matches --accent on the website
+#let ink = rgb("#16191d")
 #let muted = rgb("#5a6b78")
 #let owner = "W Lehn-Schiøler"
 
@@ -68,7 +68,7 @@
       ],
       align(right, text(size: 8.5pt, fill: muted)[
         #p.year
-        #if "citations" in p [ \ #text(fill: teal)[#p.citations cit.]]
+        #if "citations" in p [ \ #text(fill: muted)[#p.citations cit.]]
       ]),
     )
   ]
@@ -154,9 +154,9 @@
 ]
 
 #v(4pt)
-#text(size: 9.5pt, weight: "bold", fill: teal)[Preprints & under review]
+#text(size: 9.5pt, weight: "bold", fill: ink)[Preprints & under review]
 #for p in pubs.preprints { pub(p) }
 
 #v(12pt)
-#text(size: 9.5pt, weight: "bold", fill: teal)[Peer-reviewed]
+#text(size: 9.5pt, weight: "bold", fill: ink)[Peer-reviewed]
 #for p in pubs.peer_reviewed { pub(p) }

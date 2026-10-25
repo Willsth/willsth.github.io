@@ -3,132 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae | William Theodor</title>
+    <title>CV · William Theodor Lehn-Schiøler</title>
+    <meta name="description" content="Curriculum vitae of William Theodor Lehn-Schiøler: experience, education, and publications.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="eeg-bg"></canvas>
-    <div class="container">
-        <h1>Curriculum Vitae</h1>
-        <p class="page-intro">Industrial PhD student at <a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a> and <a href="https://www.healthtech.dtu.dk/research/research-sections/section-digital-health" target="_blank" rel="noopener noreferrer">DTU Health Tech</a>, building large EEG foundation models and the tools to interpret them for clinical use. The two-page PDF below is generated from the same source and kept up to date with new papers.</p>
+    <header class="site-nav">
+        <nav class="wrap" aria-label="Main">
+            <a href="index.html" class="site-name">William Theodor Lehn-Schiøler</a>
+            <ul class="nav-links">
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="index.html#braincapture">BrainCapture</a></li>
+                <li><a href="cv.html" aria-current="page">CV</a></li>
+                <li><a href="students.html">Students</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="links">
-            <a href="cv.pdf" class="cv-link" download="William Lehn-Schiøler CV.pdf">Download CV (PDF)</a>
+    <div class="page-head">
+        <canvas class="eeg-canvas" data-channels="6" aria-hidden="true"></canvas>
+        <div class="wrap">
+            <h1>Curriculum Vitae</h1>
+            <p class="lead">Industrial PhD student at <a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a> and <a href="https://www.healthtech.dtu.dk/research/research-sections/section-digital-health" target="_blank" rel="noopener noreferrer">DTU Health Tech</a>, building large EEG foundation models and the tools to interpret them for clinical use.</p>
+            <div class="actions">
+                <a class="btn btn-primary" href="cv.pdf" download="William Lehn-Schiøler CV.pdf">Download PDF</a>
+            </div>
         </div>
-
-        <!-- ── Experience ─────────────────────────────────────────────── -->
-        <h3 class="section-title">Experience</h3>
-        <div class="projects-list">
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Sep 2025 – present</span>
-                    <span class="pub-tag">Lyngby</span>
-                </div>
-                <h4>Industrial PhD Student · BrainCapture</h4>
-                <p>In collaboration with DTU Health Tech (Digital Health). Developing large-scale EEG foundation models and methods to interpret them — including sparse-autoencoder–based mechanistic interpretability, cross-domain pretraining on sleep data, and point-of-care tools such as real-time electrode detection. Co-supervising BSc/MSc theses and special courses at DTU (<a href="students.html" class="paper-link-plain">for students</a>).</p>
-            </div>
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Jan 2021 – Aug 2025</span>
-                    <span class="pub-tag">Lyngby</span>
-                </div>
-                <h4>Data Scientist · BrainCapture</h4>
-                <ul class="area-list">
-                    <li>Led the design and development of <strong>large-scale machine learning systems</strong> for EEG analysis in <strong>Python</strong>, aimed at bridging diagnostic gaps in resource-limited areas.</li>
-                    <li>Drove <strong>research-to-production integration</strong>, translating ML prototypes into robust, optimised features in the core product.</li>
-                    <li>Applied <strong>explainable AI</strong> (concept-based explainability) to improve model transparency on medical-device data.</li>
-                    <li>Contributed to clinical evaluation of low-cost EEG, including field studies in Kenya.</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Jan 2024 – Jun 2024</span>
-                    <span class="pub-tag">Copenhagen</span>
-                </div>
-                <h4>External Lecturer · DIS – Study Abroad in Scandinavia</h4>
-            </div>
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Feb 2022 – Dec 2023</span>
-                    <span class="pub-tag">Lyngby</span>
-                </div>
-                <h4>Teaching Assistant · DTU Compute</h4>
-                <p>02463 Active Machine Learning, 02464 Human Cognition and AI, 02471 Machine Learning for Signal Processing.</p>
-            </div>
-
-        </div>
-
-        <!-- ── Education ──────────────────────────────────────────────── -->
-        <h3 class="section-title">Education</h3>
-        <div class="projects-list">
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Sep 2025 – present</span>
-                    <span class="pub-tag">Industrial PhD</span>
-                </div>
-                <h4>PhD, DTU Health Tech (Digital Health)</h4>
-                <p>Technical University of Denmark, in collaboration with BrainCapture — EEG foundation models and interpretability.</p>
-            </div>
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Sep 2022 – Dec 2024</span>
-                </div>
-                <h4>MSc Mathematical Modelling and Computing</h4>
-                <p>Technical University of Denmark</p>
-            </div>
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Sep 2021 – Jan 2022</span>
-                    <span class="pub-tag">Exchange</span>
-                </div>
-                <h4>Double Majeure Mathématiques &amp; Informatique</h4>
-                <p>École Polytechnique – Université Paris-Saclay</p>
-            </div>
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Sep 2019 – Jun 2022</span>
-                </div>
-                <h4>BSc Artificial Intelligence and Data</h4>
-                <p>Technical University of Denmark</p>
-            </div>
-
-        </div>
-
-        <!-- ── Volunteer ──────────────────────────────────────────────── -->
-        <h3 class="section-title">Volunteer Experience</h3>
-        <div class="projects-list">
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Apr 2026 – present</span>
-                </div>
-                <h4>Student Ambassador · Technical University Hospital, Copenhagen</h4>
-            </div>
-
-            <div class="project-card">
-                <div class="pub-meta">
-                    <span class="pub-year">Sep 2022 – Dec 2024</span>
-                </div>
-                <h4>Board Member &amp; Chairman · Copenhagen MedTech</h4>
-            </div>
-
-        </div>
-
-        <!-- ── Publications ───────────────────────────────────────────── -->
-        <h3 class="section-title">Publications</h3>
-        <p class="section-lead">Most recently, mechanistic interpretability of EEG foundation models at NeurIPS 2026, plus 2026 preprints on sleep pretraining, smartphone EEG in Kenya, and point-of-care electrode detection. Earlier peer-reviewed work at IEEE MLSP, Epileptic Disorders, and the AAN Annual Meeting.</p>
-        <p class="section-note">Full list with authors and links on the <a href="publications.html">publications page</a> and <a href="https://scholar.google.com/citations?user=7K_-v1UAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>
-
-        <a href="index.html" class="back-btn">← Back to Home</a>
     </div>
+
+    <main class="wrap">
+
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="section-body">
+                <ol class="entries" reversed>
+                    <li class="entry">
+                        <span class="entry-dates">Sep 2025 – present</span>
+                        <div>
+                            <h3>Industrial PhD Student</h3>
+                            <p class="org">BrainCapture · Lyngby</p>
+                            <p>In collaboration with DTU Health Tech (Digital Health). Developing large-scale EEG foundation models and methods to interpret them, including sparse-autoencoder-based mechanistic interpretability, cross-domain pretraining on sleep data, and point-of-care tools such as real-time electrode detection. Co-supervising BSc/MSc theses and special courses at DTU (<a href="students.html">for students</a>).</p>
+                        </div>
+                    </li>
+                    <li class="entry">
+                        <span class="entry-dates">Jan 2021 – Aug 2025</span>
+                        <div>
+                            <h3>Data Scientist</h3>
+                            <p class="org">BrainCapture · Lyngby</p>
+                            <ul class="area-list">
+                                <li>Led the design and development of <strong>large-scale machine learning systems</strong> for EEG analysis in <strong>Python</strong>, aimed at bridging diagnostic gaps in resource-limited areas.</li>
+                                <li>Drove <strong>research-to-production integration</strong>, translating ML prototypes into robust, optimised features in the core product.</li>
+                                <li>Applied <strong>explainable AI</strong> (concept-based explainability) to improve model transparency on medical-device data.</li>
+                                <li>Contributed to clinical evaluation of low-cost EEG, including field studies in Kenya.</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="entry">
+                        <span class="entry-dates">Jan 2024 – Jun 2024</span>
+                        <div>
+                            <h3>External Lecturer</h3>
+                            <p class="org">DIS – Study Abroad in Scandinavia · Copenhagen</p>
+                        </div>
+                    </li>
+                    <li class="entry">
+                        <span class="entry-dates">Feb 2022 – Dec 2023</span>
+                        <div>
+                            <h3>Teaching Assistant</h3>
+                            <p class="org">DTU Compute · Lyngby</p>
+                            <p>02463 Active Machine Learning, 02464 Human Cognition and AI, 02471 Machine Learning for Signal Processing.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="section-body">
+                <ol class="entries" reversed>
+                    <li class="entry">
+                        <span class="entry-dates">Sep 2025 – present</span>
+                        <div>
+                            <h3>PhD, DTU Health Tech (Digital Health)</h3>
+                            <p class="org">Technical University of Denmark · Industrial PhD with BrainCapture</p>
+                            <p>EEG foundation models and interpretability.</p>
+                        </div>
+                    </li>
+                    <li class="entry">
+                        <span class="entry-dates">Sep 2022 – Dec 2024</span>
+                        <div>
+                            <h3>MSc Mathematical Modelling and Computing</h3>
+                            <p class="org">Technical University of Denmark</p>
+                        </div>
+                    </li>
+                    <li class="entry">
+                        <span class="entry-dates">Sep 2021 – Jan 2022</span>
+                        <div>
+                            <h3>Double Majeure Mathématiques &amp; Informatique</h3>
+                            <p class="org">École Polytechnique – Université Paris-Saclay · Exchange</p>
+                        </div>
+                    </li>
+                    <li class="entry">
+                        <span class="entry-dates">Sep 2019 – Jun 2022</span>
+                        <div>
+                            <h3>BSc Artificial Intelligence and Data</h3>
+                            <p class="org">Technical University of Denmark</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Volunteer</h2>
+            <div class="section-body">
+                <ol class="entries" reversed>
+                    <li class="entry">
+                        <span class="entry-dates">Apr 2026 – present</span>
+                        <div>
+                            <h3>Student Ambassador</h3>
+                            <p class="org">Technical University Hospital, Copenhagen</p>
+                        </div>
+                    </li>
+                    <li class="entry">
+                        <span class="entry-dates">Sep 2022 – Dec 2024</span>
+                        <div>
+                            <h3>Board Member &amp; Chairman</h3>
+                            <p class="org">Copenhagen MedTech</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Publications</h2>
+            <div class="section-body">
+                <p class="section-lead">Most recently, mechanistic interpretability of EEG foundation models at NeurIPS 2026, plus 2026 preprints on sleep pretraining, smartphone EEG in Kenya, and point-of-care electrode detection. Earlier peer-reviewed work at IEEE MLSP, Epileptic Disorders, and the AAN Annual Meeting.</p>
+                <a class="more" href="publications.html">Full list with authors and links →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>© 2026 William Theodor Lehn-Schiøler · <a href="mailto:wls@braincapture.dk">wls@braincapture.dk</a> · <span class="version">v2.0</span></p>
+            <div class="footer-links">
+                <a href="https://scholar.google.com/citations?user=7K_-v1UAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                <a href="https://www.linkedin.com/in/williamtheodor/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/willsth" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="eeg-animation.js"></script>
 </body>
 </html>

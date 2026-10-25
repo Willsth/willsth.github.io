@@ -3,28 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William Theodor Lehn-Schiøler | Personal Page</title>
+    <title>William Theodor Lehn-Schiøler</title>
+    <meta name="description" content="Industrial PhD student at BrainCapture and DTU Health Tech, building EEG foundation models and methods to interpret them for clinical use.">
+    <meta property="og:title" content="William Theodor Lehn-Schiøler">
+    <meta property="og:description" content="EEG foundation models, interpretability, and point-of-care EEG — BrainCapture & DTU Health Tech.">
+    <meta property="og:image" content="https://willsth.github.io/William.jpeg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="eeg-bg"></canvas>
-    <div class="container">
-        <img src="William.jpeg" alt="William Theodor Lehn-Schiøler" class="profile-pic">
-        <h1>William Theodor Lehn-Schiøler</h1>
-        <h2>Industrial PhD Student at <a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a> and <a href="https://www.healthtech.dtu.dk/research/research-sections/section-digital-health" target="_blank" rel="noopener noreferrer">DTU Health Tech</a></h2>
+    <header class="site-nav">
+        <nav class="wrap" aria-label="Main">
+            <a href="index.html" class="site-name">William Theodor Lehn-Schiøler</a>
+            <ul class="nav-links">
+                <li><a href="#research">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="#braincapture">BrainCapture</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="students.html">Students</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <p class="research-blurb">As researcher at BrainCapture, I lead the development of Large EEG Foundation Models designed to bridge the gap between deep-tech research and clinical application. My work focuses on leveraging self-supervised learning and Explainable AI (XAI) to transform "black box" neural representations into transparent, actionable insights for medical professionals. By integrating academic rigor with startup agility, I am building the scalable architecture necessary to automate EEG interpretation and democratize high-grade neurological diagnostics worldwide.</p>
-
-        <div class="links">
-            <a href="https://www.linkedin.com/in/williamtheodor/" target="_blank">LinkedIn</a>
-            <a href="https://scholar.google.com/citations?user=7K_-v1UAAAAJ&hl=en&oi=ao" target="_blank" class="scholar">Google Scholar</a>
-            <a href="publications.html" class="pub-link">Publications</a>
-            <a href="cv.html" class="cv-link">CV</a>
-            <a href="students.html" class="projects-link">For Students</a>
+    <div class="hero">
+        <canvas class="eeg-canvas" aria-hidden="true"></canvas>
+        <div class="wrap">
+            <img src="William.jpeg" alt="Portrait of William Theodor Lehn-Schiøler" class="hero-photo">
+            <div>
+                <p class="eyebrow">Industrial PhD · BrainCapture &amp; DTU Health Tech</p>
+                <h1>William Theodor Lehn-Schiøler</h1>
+                <p class="hero-lead">I build large EEG foundation models and the tools to understand them, so that clinical EEG can be interpreted faster, more transparently, and where neurologists are scarce.</p>
+                <div class="actions">
+                    <a class="btn btn-primary" href="publications.html">Publications</a>
+                    <a class="btn" href="cv.html">CV</a>
+                    <a class="btn" href="https://scholar.google.com/citations?user=7K_-v1UAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                    <a class="btn" href="mailto:wls@braincapture.dk">Email</a>
+                </div>
+            </div>
         </div>
-
-        <p class="footer-note">Contact me at <a href="mailto:wls@braincapture.dk" class="contact-link">wls@braincapture.dk</a></p>
+        <p class="hero-caption">Background: a real 15-channel EEG recording, alpha rhythm, 0.5–40 Hz</p>
     </div>
+
+    <main class="wrap">
+
+        <section class="section" id="about">
+            <h2 class="section-title">About</h2>
+            <div class="section-body prose">
+                <p>I am an Industrial PhD student at <a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a> and the <a href="https://www.healthtech.dtu.dk/research/research-sections/section-digital-health" target="_blank" rel="noopener noreferrer">Section for Digital Health at DTU Health Tech</a>, where I lead the development of large EEG foundation models.</p>
+                <p>My research uses self-supervised learning to learn general-purpose representations of brain activity, and mechanistic interpretability to open those models up: turning what they have learned into features clinicians can inspect and trust. Working between a university and a medtech company, I care about results that survive the move from benchmark to clinic, including on low-cost hardware in resource-limited settings.</p>
+            </div>
+        </section>
+
+        <section class="section" id="news">
+            <h2 class="section-title">News</h2>
+            <div class="section-body">
+                <ul class="news">
+                    <li><time datetime="2026-09">Sep 2026</time><span>Our paper on <a href="https://arxiv.org/abs/2605.13930" target="_blank" rel="noopener noreferrer">mechanistic interpretability of EEG foundation models via sparse autoencoders</a> was accepted at NeurIPS 2026.</span></li>
+                    <li><time datetime="2026-07">Jul 2026</time><span>New preprint: <a href="https://arxiv.org/abs/2607.20142" target="_blank" rel="noopener noreferrer">real-time EEG cap electrode detection</a> for guided point-of-care placement.</span></li>
+                    <li><time datetime="2026-05">May 2026</time><span>Two preprints: <a href="https://arxiv.org/abs/2605.02500" target="_blank" rel="noopener noreferrer">pretraining on sleep data</a> and the <a href="https://arxiv.org/abs/2605.08157" target="_blank" rel="noopener noreferrer">clinical feasibility of smartphone-based EEG in Kenya</a>.</span></li>
+                    <li><time datetime="2026-04">Apr 2026</time><span>Abstract on smartphone-based EEG in Kenya at the AAN Annual Meeting.</span></li>
+                    <li><time datetime="2025-09">Sep 2025</time><span>Started my Industrial PhD at BrainCapture and DTU Health Tech.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="research">
+            <h2 class="section-title">Research</h2>
+            <div class="section-body">
+                <div class="themes">
+                    <div class="theme">
+                        <h3>EEG foundation models</h3>
+                        <p>Self-supervised pretraining on large, heterogeneous EEG and sleep corpora, and the preprocessing needed to make that data usable at scale.</p>
+                        <a href="https://arxiv.org/abs/2605.02500" target="_blank" rel="noopener noreferrer">Sleep pretraining →</a>
+                    </div>
+                    <div class="theme">
+                        <h3>Interpretability</h3>
+                        <p>Sparse autoencoders and concept-based explanations that reveal what these models represent, in terms clinicians can check.</p>
+                        <a href="https://arxiv.org/abs/2605.13930" target="_blank" rel="noopener noreferrer">NeurIPS 2026 →</a>
+                    </div>
+                    <div class="theme">
+                        <h3>Point-of-care EEG</h3>
+                        <p>Low-cost, portable recording and guided electrode placement, validated in clinical studies in resource-limited settings.</p>
+                        <a href="https://arxiv.org/abs/2605.08157" target="_blank" rel="noopener noreferrer">Kenya study →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="selected-publications">
+            <h2 class="section-title">Selected publications</h2>
+            <div class="section-body">
+                <!-- BEGIN selected-publications -->
+                <ol class="pub-list">
+                    <li class="pub">
+                        <span class="pub-year">2026</span>
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2605.13930" target="_blank" rel="noopener noreferrer">Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders</a></h3>
+                            <p class="pub-summary">Sparse autoencoders decompose the internal representations of EEG foundation models into features that can be inspected and interpreted.</p>
+                            <p class="pub-authors"><strong>W Lehn-Schiøler</strong>, MR Kjær, R Thapa, MG Pedersen, AM Storgaard, N Williams, R Gatej, T Lehn-Schiøler, A Brink-Kjær, S Puthusserypady, S Beniczky, J Zou, LK Hansen</p>
+                            <p class="pub-venue">NeurIPS 2026 · Conference on Neural Information Processing Systems (to appear) <span class="pub-badges"><span class="pub-citations">4 citations</span></span></p>
+                            <div class="chips"><a class="chip" href="https://arxiv.org/abs/2605.13930" target="_blank" rel="noopener noreferrer">arXiv</a></div>
+                        </div>
+                    </li>
+                    <li class="pub">
+                        <span class="pub-year">2026</span>
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2605.08157" target="_blank" rel="noopener noreferrer">Clinical Feasibility of Smartphone-based EEG in Kenya</a></h3>
+                            <p class="pub-summary">A clinical feasibility study of recording diagnostic EEG with a smartphone-based system in Kenya.</p>
+                            <p class="pub-authors"><strong>W Lehn-Schiøler</strong>, N Enkhtsetseg, AM Storgaard, MG Pedersen, D Rice, G Wambugu, NJ Fidele, M Cacic Hribljan, AA Arbune, S Armand Larsen, S Beniczky</p>
+                            <p class="pub-venue">arXiv:2605.08157 · May 2026 <span class="pub-badges"><span class="pub-tag">Preprint</span></span></p>
+                            <div class="chips"><a class="chip" href="https://arxiv.org/abs/2605.08157" target="_blank" rel="noopener noreferrer">arXiv</a></div>
+                        </div>
+                    </li>
+                    <li class="pub">
+                        <span class="pub-year">2026</span>
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2605.02500" target="_blank" rel="noopener noreferrer">Pretraining on Sleep Data Improves non-Sleep Biosignal Tasks</a></h3>
+                            <p class="pub-summary">Pretraining on large collections of sleep recordings transfers to biosignal tasks beyond sleep.</p>
+                            <p class="pub-authors"><strong>W Lehn-Schiøler</strong>, MR Kjær, P Hempel, MG Pedersen, R Thapa, B He, N Spicher, A Brink-Kjær, LK Hansen, E Mignot</p>
+                            <p class="pub-venue">arXiv:2605.02500 · May 2026 <span class="pub-badges"><span class="pub-tag">Preprint</span></span></p>
+                            <div class="chips"><a class="chip" href="https://arxiv.org/abs/2605.02500" target="_blank" rel="noopener noreferrer">arXiv</a></div>
+                        </div>
+                    </li>
+                    <li class="pub">
+                        <span class="pub-year">2024</span>
+                        <div>
+                            <h3 class="pub-title"><a href="https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266" target="_blank" rel="noopener noreferrer">Low-cost portable EEG device for bridging the diagnostic gap in resource-limited areas</a></h3>
+                            <p class="pub-summary">Evaluation of a low-cost, portable EEG device as a way to close the diagnostic gap where conventional EEG is unavailable.</p>
+                            <p class="pub-authors">S Armand Larsen, L Klok, <strong>W Lehn-Schiøler</strong>, R Gatej, S Beniczky</p>
+                            <p class="pub-venue">Epileptic Disorders, vol. 26 (5), pp. 694–700 <span class="pub-badges"><span class="pub-citations">25 citations</span></span></p>
+                            <div class="chips"><a class="chip" href="https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266" target="_blank" rel="noopener noreferrer">Paper</a></div>
+                        </div>
+                    </li>
+                </ol>                <!-- END selected-publications -->
+                <a class="more" href="publications.html">All publications →</a>
+            </div>
+        </section>
+
+        <section class="section" id="braincapture">
+            <h2 class="section-title">BrainCapture</h2>
+            <div class="section-body">
+                <div class="feature">
+                    <p class="eyebrow">Industry</p>
+                    <h3>Bringing EEG to where it is missing</h3>
+                    <p><a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a> is a Danish medtech company building a low-cost, portable EEG system: an electrode cap and a smartphone-based recorder that let health workers without specialist training record clinical-grade EEG, with analysis supported remotely and by machine learning.</p>
+                    <p>I joined as a data scientist in 2021 and now lead its foundation-model research as an Industrial PhD, connecting the machine learning to the product and to clinical studies in the field.</p>
+                    <dl class="facts">
+                        <div>
+                            <dt>Device</dt>
+                            <dd><a href="https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266" target="_blank" rel="noopener noreferrer">Epileptic Disorders, 2024</a></dd>
+                        </div>
+                        <div>
+                            <dt>Field study</dt>
+                            <dd><a href="https://arxiv.org/abs/2605.08157" target="_blank" rel="noopener noreferrer">Smartphone EEG in Kenya</a></dd>
+                        </div>
+                        <div>
+                            <dt>Point of care</dt>
+                            <dd><a href="https://arxiv.org/abs/2607.20142" target="_blank" rel="noopener noreferrer">Guided electrode placement</a></dd>
+                        </div>
+                    </dl>
+                    <div class="actions">
+                        <a class="btn btn-primary" href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">Visit braincapture.dk</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEGIN media -->
+        <!-- END media -->
+
+        <section class="section" id="students">
+            <h2 class="section-title">Supervision</h2>
+            <div class="section-body">
+                <p class="section-lead">I co-supervise special courses and BSc/MSc theses at DTU, with real clinical EEG data, GPU compute, and the models we work on at BrainCapture.</p>
+                <a class="more" href="students.html">How to start a project with me →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>© 2026 William Theodor Lehn-Schiøler · <a href="mailto:wls@braincapture.dk">wls@braincapture.dk</a> · <span class="version">v2.0</span></p>
+            <div class="footer-links">
+                <a href="https://scholar.google.com/citations?user=7K_-v1UAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                <a href="https://www.linkedin.com/in/williamtheodor/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/willsth" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://braincapture.dk" target="_blank" rel="noopener noreferrer">BrainCapture</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="eeg-animation.js"></script>
+    <script src="media.js"></script>
 </body>
 </html>
