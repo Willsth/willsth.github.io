@@ -206,16 +206,6 @@ img, video { max-width: 100%; display: block; }
     margin-bottom: 22px;
 }
 
-.hero-caption {
-    position: absolute;
-    right: var(--gutter);
-    bottom: 12px;
-    margin: 0;
-    font-size: 0.72rem;
-    color: var(--text-3);
-    letter-spacing: 0.02em;
-}
-
 /* ── Buttons & link rows ───────────────────────────────────────────── */
 .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 
@@ -667,7 +657,6 @@ main { padding-bottom: 40px; }
     :root { --gutter: 16px; }
     .hero .wrap { grid-template-columns: 1fr; gap: 22px; padding-top: 44px; padding-bottom: 52px; }
     .hero-photo { width: 104px; height: 104px; }
-    .hero-caption { position: static; padding: 0 var(--gutter) 14px; margin-top: -36px; }
     .eeg-canvas {
         -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.12) 45%, rgba(0,0,0,0.5) 100%);
                 mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.12) 45%, rgba(0,0,0,0.5) 100%);
