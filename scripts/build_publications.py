@@ -116,8 +116,13 @@ def teaser(path, indent):
 
 
 def figure(p, indent):
+    """Wide figure under a paper; with `figure_dark` the light/dark versions follow the visitor's theme."""
     caption = f"<figcaption>{escape(p['figure_caption'])}</figcaption>" if p.get("figure_caption") else ""
-    return f'{indent}<figure class="pub-figure">{clip(p["figure"], p.get("figure_poster"))}{caption}</figure>'
+    media = clip(p["figure"], p.get("figure_poster"))
+    if p.get("figure_dark"):
+        media = (f'<div class="only-light">{media}</div>'
+                 f'<div class="only-dark">{clip(p["figure_dark"], p.get("figure_dark_poster"))}</div>')
+    return f'{indent}<figure class="pub-figure">{media}{caption}</figure>'
 
 
 def pub_item(p, default_tag=None, summary=False, indent="                    ", heading="h3"):

@@ -685,12 +685,17 @@ main { padding-bottom: 40px; }
     margin: 16px 0 0;
     max-width: 560px;
 }
+/* Figures are drawn on the page background (--bg), so they need no frame */
 .pub-figure video, .pub-figure img {
     width: 100%;
     height: auto;
-    border-radius: 6px;
-    border: 1px solid var(--rule);
-    background: #fff;   /* figures are drawn on white */
+}
+
+/* Theme-specific media: only the version matching the visitor's colour scheme shows */
+.only-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+    .only-light { display: none; }
+    .only-dark  { display: block; }
 }
 .pub-figure figcaption, .feature-photo figcaption, .feature-video figcaption {
     font-size: 0.82rem;
