@@ -374,7 +374,7 @@ main { padding-bottom: 40px; }
 }
 .pub-list > .pub:first-child { border-top: 0; }
 
-.pub.has-teaser { grid-template-columns: 56px minmax(0, 1fr) 200px; }
+.pub.has-figure { grid-template-columns: 56px minmax(0, 1fr) 240px; }
 
 .pub-year {
     font-size: 0.85rem;
@@ -425,15 +425,6 @@ main { padding-bottom: 40px; }
     color: var(--text-3);
 }
 
-.pub-teaser {
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--rule);
-    background: var(--surface-2);
-    align-self: start;
-    aspect-ratio: 16 / 10;
-}
-.pub-teaser img, .pub-teaser video { width: 100%; height: 100%; object-fit: cover; }
 
 .pub-player { margin-top: 14px; }
 
@@ -649,8 +640,8 @@ main { padding-bottom: 40px; }
 @media (max-width: 860px) {
     .section { grid-template-columns: 1fr; gap: 16px; padding: 40px 0; }
     .themes, .facts { grid-template-columns: 1fr; gap: 20px; }
-    .pub.has-teaser { grid-template-columns: 56px minmax(0, 1fr); }
-    .pub.has-teaser .pub-teaser { grid-column: 2; max-width: 360px; }
+    .pub.has-figure { grid-template-columns: 56px minmax(0, 1fr); }
+    .pub.has-figure .pub-figure { grid-column: 2; max-width: 360px; }
 }
 
 @media (max-width: 600px) {
@@ -661,8 +652,8 @@ main { padding-bottom: 40px; }
         -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.12) 45%, rgba(0,0,0,0.5) 100%);
                 mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.12) 45%, rgba(0,0,0,0.5) 100%);
     }
-    .pub, .pub.has-teaser { grid-template-columns: 1fr; gap: 6px; }
-    .pub.has-teaser .pub-teaser { grid-column: auto; }
+    .pub, .pub.has-figure { grid-template-columns: 1fr; gap: 6px; }
+    .pub.has-figure .pub-figure { grid-column: auto; margin-top: 10px; }
     .entry, .news li { grid-template-columns: 1fr; gap: 2px; }
     .media-grid, .cards { grid-template-columns: 1fr; }
     .feature { padding: 22px 20px; }
@@ -681,15 +672,50 @@ main { padding-bottom: 40px; }
 [id] { scroll-margin-top: 76px; }
 
 /* ── Media additions: figures, product photo, self-hosted video ────── */
-.pub-figure {
-    margin: 16px 0 0;
-    max-width: 560px;
+/* Per-paper visual: drawn on the page background (--bg); the thin frame sets it off as a thumbnail */
+.pub-figure { margin: 0; align-self: start; }
+.pub-figure video, .pub-figure img { width: 100%; height: auto; }
+.pub-figure figcaption { display: none; }   /* shown in the lightbox */
+
+.figure-zoom {
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: zoom-in;
+    transition: border-color 0.15s ease;
 }
-/* Figures are drawn on the page background (--bg), so they need no frame */
-.pub-figure video, .pub-figure img {
-    width: 100%;
-    height: auto;
+.figure-zoom:hover { border-color: var(--text-3); }
+
+/* Lightbox for enlarged figures (media.js) */
+.lightbox {
+    width: min(960px, 92vw);
+    max-width: none;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
 }
+.lightbox::backdrop { background: rgba(8, 10, 12, 0.6); backdrop-filter: blur(2px); }
+.lightbox figure { margin: 0; }
+.lightbox video, .lightbox img { width: 100%; height: auto; }
+.lightbox figcaption { padding: 4px 24px 22px; font-size: 0.92rem; color: var(--text-2); line-height: 1.55; }
+.lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text-2);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.lightbox-close:hover { color: var(--text); border-color: var(--text-3); }
 
 /* Theme-specific media: only the version matching the visitor's colour scheme shows */
 .only-dark { display: none; }
@@ -697,7 +723,7 @@ main { padding-bottom: 40px; }
     .only-light { display: none; }
     .only-dark  { display: block; }
 }
-.pub-figure figcaption, .feature-photo figcaption, .feature-video figcaption {
+.feature-photo figcaption, .feature-video figcaption {
     font-size: 0.82rem;
     color: var(--text-3);
     margin-top: 8px;

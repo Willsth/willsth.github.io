@@ -1,5 +1,6 @@
-// Click-to-load video: YouTube embeds and self-hosted clips. Nothing is requested from
-// YouTube until a visitor presses play; without JavaScript the posters and "Video" chips are plain links.
+// Click-to-load video (YouTube embeds and self-hosted clips) and enlargeable paper figures.
+// Nothing is requested from YouTube until a visitor presses play; without JavaScript the
+// posters, figures and "Video" chips are plain links.
 (function () {
     function embed(id, title) {
         const iframe = document.createElement('iframe');
@@ -10,8 +11,44 @@
         return iframe;
     }
 
-    // <a class="video" data-yt="ID"> thumbnail → player in place
+    // Enlarged paper figure: the version matching the visitor's theme, with its caption
+    let lightbox;
+    function enlarge(fig) {
+        if (!lightbox) {
+            lightbox = document.createElement('dialog');
+            lightbox.className = 'lightbox';
+            lightbox.addEventListener('click', e => {
+                if (e.target === lightbox || e.target.closest('.lightbox-close')) lightbox.close();
+            });
+            lightbox.addEventListener('close', () => lightbox.replaceChildren());
+            document.body.append(lightbox);
+        }
+        const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const source = fig.querySelector(dark ? '.only-dark' : '.only-light') || fig.querySelector('.figure-zoom');
+        const media = source.querySelector('video, img').cloneNode();
+        const figure = document.createElement('figure');
+        figure.append(media);
+        const caption = fig.querySelector('figcaption');
+        if (caption) figure.append(caption.cloneNode(true));
+        const close = document.createElement('button');
+        close.className = 'lightbox-close';
+        close.setAttribute('aria-label', 'Close');
+        close.textContent = '×';
+        lightbox.replaceChildren(figure, close);
+        lightbox.showModal();
+        if (media.play && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) media.play();
+    }
+
     document.addEventListener('click', e => {
+        // <a class="figure-zoom"> paper visual → lightbox
+        const zoom = e.target.closest('a.figure-zoom');
+        if (zoom) {
+            e.preventDefault();
+            enlarge(zoom.closest('figure'));
+            return;
+        }
+
+        // <a class="video" data-yt="ID"> thumbnail → player in place
         const facade = e.target.closest('a.video[data-yt]');
         if (facade) {
             e.preventDefault();
@@ -53,7 +90,7 @@
         }
     });
 
-    // Looping teaser clips stay still for visitors who prefer reduced motion
+    // Looping figure clips stay still for visitors who prefer reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
     }

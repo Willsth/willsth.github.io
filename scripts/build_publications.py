@@ -111,18 +111,16 @@ def clip(path, poster=None):
     return f'<img src="{src}" alt="" loading="lazy">'
 
 
-def teaser(path, indent):
-    return f'{indent}<div class="pub-teaser">{clip(path)}</div>'
-
-
 def figure(p, indent):
-    """Wide figure under a paper; with `figure_dark` the light/dark versions follow the visitor's theme."""
+    """Visual in the right-hand column of a paper; media.js enlarges it with its caption on click.
+    With `figure_dark` the light/dark versions follow the visitor's theme."""
     caption = f"<figcaption>{escape(p['figure_caption'])}</figcaption>" if p.get("figure_caption") else ""
     media = clip(p["figure"], p.get("figure_poster"))
     if p.get("figure_dark"):
         media = (f'<div class="only-light">{media}</div>'
                  f'<div class="only-dark">{clip(p["figure_dark"], p.get("figure_dark_poster"))}</div>')
-    return f'{indent}<figure class="pub-figure">{media}{caption}</figure>'
+    return (f'{indent}<figure class="pub-figure"><a class="figure-zoom" href="{escape(p["figure"])}" '
+            f'aria-label="Enlarge figure">{media}</a>{caption}</figure>')
 
 
 def pub_item(p, default_tag=None, summary=False, indent="                    ", heading="h3"):
@@ -162,7 +160,7 @@ def pub_item(p, default_tag=None, summary=False, indent="                    ", 
             f'target="_blank" rel="noopener noreferrer">▶ Video</a>'
         )
 
-    cls = "pub has-teaser" if p.get("teaser") else "pub"
+    cls = "pub has-figure" if p.get("figure") else "pub"
     lines = [
         f'{i1}<li class="{cls}">',
         f'{i2}<span class="pub-year">{p["year"]}</span>',
@@ -179,11 +177,9 @@ def pub_item(p, default_tag=None, summary=False, indent="                    ", 
         lines.append(f'{i3}<div class="chips">' + "".join(chip_html) + "</div>")
     if player:
         lines.append(f'{i3}<div class="pub-player" id="{player}" hidden></div>')
-    if p.get("figure"):
-        lines.append(figure(p, i3))
     lines.append(f"{i2}</div>")
-    if p.get("teaser"):
-        lines.append(teaser(p["teaser"], i2))
+    if p.get("figure"):
+        lines.append(figure(p, i2))
     lines.append(f"{i1}</li>")
     return "\n".join(lines)
 
