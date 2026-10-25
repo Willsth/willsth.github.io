@@ -14,6 +14,8 @@
 #   teaser     image or looping clip next to the paper, e.g. media/sae-features.mp4
 #              (prefer a short muted .mp4/.webm over .gif — it is ~10× smaller)
 #   video      YouTube ID or URL; adds a "Video" button that opens an inline player
+#   figure     wide image or looping clip below the paper, with optional
+#              figure_poster (still frame) and figure_caption
 #   pdf, code, project, poster, slides   extra links shown as buttons
 
 preprints:
@@ -46,6 +48,9 @@ peer_reviewed:
   - title: "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders"
     featured: true
     summary: "Sparse autoencoders decompose the internal representations of EEG foundation models into features that can be inspected and interpreted."
+    figure: "media/sae-steering.mp4"
+    figure_poster: "media/sae-steering.jpg"
+    figure_caption: "Steering an abnormal adult EEG toward normal: the steered spectrum (purple) moves from the abnormal recording toward a normal one (green)."
     authors: "W Lehn-Schiøler, MR Kjær, R Thapa, MG Pedersen, AM Storgaard, N Williams, R Gatej, T Lehn-Schiøler, A Brink-Kjær, S Puthusserypady, S Beniczky, J Zou, LK Hansen"
     venue: "NeurIPS 2026 (to appear)"
     web_venue: "NeurIPS 2026 · Conference on Neural Information Processing Systems (to appear)"

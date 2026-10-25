@@ -102,13 +102,22 @@ def link_label(url):
     return "arXiv" if "arxiv.org" in url else "Paper"
 
 
-def teaser(path, indent):
+def clip(path, poster=None):
+    """A looping muted clip for video files, otherwise a lazy image (GIF, PNG, JPG)."""
     src = escape(path)
     if path.lower().endswith((".mp4", ".webm")):
-        media = f'<video src="{src}" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>'
-    else:
-        media = f'<img src="{src}" alt="" loading="lazy">'
-    return f'{indent}<div class="pub-teaser">{media}</div>'
+        poster = f' poster="{escape(poster)}"' if poster else ""
+        return f'<video src="{src}"{poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>'
+    return f'<img src="{src}" alt="" loading="lazy">'
+
+
+def teaser(path, indent):
+    return f'{indent}<div class="pub-teaser">{clip(path)}</div>'
+
+
+def figure(p, indent):
+    caption = f"<figcaption>{escape(p['figure_caption'])}</figcaption>" if p.get("figure_caption") else ""
+    return f'{indent}<figure class="pub-figure">{clip(p["figure"], p.get("figure_poster"))}{caption}</figure>'
 
 
 def pub_item(p, default_tag=None, summary=False, indent="                    ", heading="h3"):
@@ -165,6 +174,8 @@ def pub_item(p, default_tag=None, summary=False, indent="                    ", 
         lines.append(f'{i3}<div class="chips">' + "".join(chip_html) + "</div>")
     if player:
         lines.append(f'{i3}<div class="pub-player" id="{player}" hidden></div>')
+    if p.get("figure"):
+        lines.append(figure(p, i3))
     lines.append(f"{i2}</div>")
     if p.get("teaser"):
         lines.append(teaser(p["teaser"], i2))
@@ -201,16 +212,30 @@ def media_section(items):
         return ""
     cards = []
     for m in items:
-        vid = youtube_id(m["youtube"])
-        where = " · ".join(escape(str(m[k])) for k in ("kind", "venue", "date") if m.get(k))
+        where = " · ".join(escape(str(m[k])) for k in ("kind", "venue", "date", "note") if m.get(k))
+        if m.get("youtube"):
+            vid = youtube_id(m["youtube"])
+            player = (
+                f'                        <a class="video" href="https://www.youtube.com/watch?v={escape(vid)}" data-yt="{escape(vid)}" '
+                f'aria-label="Play: {escape(m["title"])}" target="_blank" rel="noopener noreferrer">\n'
+                f'                            <img src="https://i.ytimg.com/vi/{escape(vid)}/maxresdefault.jpg" alt="" loading="lazy" '
+                f'onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/{escape(vid)}/hqdefault.jpg\'">\n'
+                '                            <span class="play"></span>\n'
+                "                        </a>\n"
+            )
+        else:
+            poster = f'                            <img src="{escape(m["poster"])}" alt="" loading="lazy">\n' if m.get("poster") else ""
+            player = (
+                f'                        <a class="video" href="{escape(m["file"])}" data-src="{escape(m["file"])}" '
+                f'aria-label="Play: {escape(m["title"])}">\n'
+                + poster
+                + '                            <span class="play"></span>\n'
+                "                        </a>\n"
+            )
         cards.append(
             '                    <article class="media-item">\n'
-            f'                        <a class="video" href="https://www.youtube.com/watch?v={escape(vid)}" data-yt="{escape(vid)}" '
-            f'aria-label="Play: {escape(m["title"])}" target="_blank" rel="noopener noreferrer">\n'
-            f'                            <img src="https://i.ytimg.com/vi/{escape(vid)}/hqdefault.jpg" alt="" loading="lazy">\n'
-            '                            <span class="play"></span>\n'
-            "                        </a>\n"
-            f'                        <h3>{escape(m["title"])}</h3>\n'
+            + player
+            + f'                        <h3>{escape(m["title"])}</h3>\n'
             + (f"                        <p>{where}</p>\n" if where else "")
             + "                    </article>"
         )
@@ -227,10 +252,10 @@ def media_section(items):
 
 
 def replace_block(html, name, content):
-    pattern = re.compile(rf"(<!-- BEGIN {name} -->\n).*?(\s*<!-- END {name} -->)", re.S)
+    pattern = re.compile(rf"(<!-- BEGIN {name} -->\n).*?([ \t]*<!-- END {name} -->)", re.S)
     if not pattern.search(html):
         raise SystemExit(f"index.html is missing the '{name}' markers")
-    return pattern.sub(lambda m: m.group(1) + content.rstrip("\n") + m.group(2), html)
+    return pattern.sub(lambda m: m.group(1) + content + m.group(2), html)
 
 
 def main():

@@ -1,5 +1,5 @@
-// Click-to-load YouTube embeds. Nothing is requested from YouTube until a visitor
-// presses play; without JavaScript the thumbnails and "Video" chips are plain links.
+// Click-to-load video: YouTube embeds and self-hosted clips. Nothing is requested from
+// YouTube until a visitor presses play; without JavaScript the posters and "Video" chips are plain links.
 (function () {
     function embed(id, title) {
         const iframe = document.createElement('iframe');
@@ -17,6 +17,20 @@
             e.preventDefault();
             facade.replaceChildren(embed(facade.dataset.yt, facade.getAttribute('aria-label')));
             facade.removeAttribute('href');
+            return;
+        }
+
+        // <a class="video" data-src="file.mp4"> poster → self-hosted player in place
+        const local = e.target.closest('a.video[data-src]');
+        if (local) {
+            e.preventDefault();
+            const video = document.createElement('video');
+            video.src = local.dataset.src;
+            video.controls = video.autoplay = video.playsInline = true;
+            video.setAttribute('aria-label', local.getAttribute('aria-label').replace(/^Play: /, ''));
+            local.replaceChildren(video);
+            local.removeAttribute('href');
+            local.removeAttribute('data-src');   // later clicks belong to the player's own controls
             return;
         }
 

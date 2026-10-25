@@ -690,3 +690,49 @@ main { padding-bottom: 40px; }
 
 /* Anchored sections clear the sticky nav */
 [id] { scroll-margin-top: 76px; }
+
+/* ── Media additions: figures, product photo, self-hosted video ────── */
+.pub-figure {
+    margin: 16px 0 0;
+    max-width: 560px;
+}
+.pub-figure video, .pub-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    background: #fff;   /* figures are drawn on white */
+}
+.pub-figure figcaption, .feature-photo figcaption, .feature-video figcaption {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+.feature-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 32px;
+    align-items: start;
+}
+/* Beside the photo the facts become label/value rows */
+.feature-split .facts { grid-template-columns: 1fr; gap: 8px; }
+.feature-split .facts > div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: baseline; }
+.feature-split .facts dt { margin: 0; }
+.feature-photo { margin: 0; }
+.feature-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+}
+
+.feature-video { margin: 28px 0 0; }
+
+.video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.media-grid > :only-child { grid-column: 1 / -1; }
+
+@media (max-width: 860px) {
+    .feature-split { grid-template-columns: 1fr; }
+    .feature-photo { max-width: 280px; }
+}

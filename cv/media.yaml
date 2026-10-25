@@ -3,10 +3,13 @@
 #   python3 scripts/build_publications.py
 #
 #   title    shown under the video
-#   youtube  video ID or any YouTube URL
+#   youtube  video ID or any YouTube URL (click-to-load embed)
+#   file     or a self-hosted .mp4 under media/ (keep it small: 1080p, ~15 MB),
+#            with an optional poster image
 #   kind     optional, e.g. Talk, Interview, Demo
 #   venue    optional, e.g. NeurIPS 2026
 #   date     optional, e.g. Dec 2026
+#   note     optional, e.g. In Danish
 #
 # Example:
 #   - title: "Looking inside EEG foundation models with sparse autoencoders"
@@ -15,4 +18,16 @@
 #     venue: NeurIPS 2026
 #     date: Dec 2026
 
-media: []
+media:
+  - title: "Closing the gap on epilepsy diagnosis"
+    youtube: "https://www.youtube.com/watch?v=mXnP2eMiJEg"
+    kind: Film
+    venue: BBC StoryWorks with BrainCapture & Akkodis
+
+  - title: "BrainCapture in the running for Industriens Fonds' AI Prize"
+    file: "media/ai-denmark-summit-2025.mp4"
+    poster: "media/ai-denmark-summit-2025.jpg"
+    kind: Feature
+    venue: AI Denmark Summit 2025
+    date: Dec 2025
+    note: In Danish
