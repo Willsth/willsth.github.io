@@ -9,6 +9,53 @@
     "2025": 21,
     "2026": 31
   },
+  "articles": [
+    {
+      "title": "Low‐cost portable EEG device for bridging the diagnostic gap in resource‐limited areas",
+      "year": 2024,
+      "citations": 27
+    },
+    {
+      "title": "Concept-based explainability for an EEG transformer model",
+      "year": 2023,
+      "citations": 16
+    },
+    {
+      "title": "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders",
+      "year": 2026,
+      "citations": 5
+    },
+    {
+      "title": "Speed: Scalable preprocessing of eeg data for self-supervised learning",
+      "year": 2024,
+      "citations": 4
+    },
+    {
+      "title": "Pretraining on Sleep Data Improves non-Sleep Biosignal Tasks",
+      "year": 2026,
+      "citations": 2
+    },
+    {
+      "title": "Clinical Utility and Feasibility of Smartphone-based EEG in Kenya: A Multicenter Observational Study",
+      "year": 2026,
+      "citations": 1
+    },
+    {
+      "title": "Real-Time EEG Cap Electrode Detection for Guided Point-of-Care Placement",
+      "year": 2026,
+      "citations": 0
+    },
+    {
+      "title": "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya (P2-10.001)",
+      "year": 2026,
+      "citations": 0
+    },
+    {
+      "title": "Clinical Feasibility of Smartphone-based EEG in Kenya",
+      "year": 2026,
+      "citations": 0
+    }
+  ],
   "history": [
     {
       "date": "2026-10-25",

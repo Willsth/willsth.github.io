@@ -1,0 +1,9 @@
+# Hand-maintained numbers for the "All the other metrics" block on publications.html.
+# Everything else in that panel comes from Google Scholar via cv/metrics.json.
+#
+#   followers         social-media follower count for the Kardashian Index (Hall, 2014);
+#                     leave empty to hide that metric
+#   followers_source  where the followers are counted, shown in the fine print
+
+followers:
+followers_source: LinkedIn

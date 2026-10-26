@@ -387,7 +387,64 @@ def year_chart(per_year, current_year):
     )
 
 
-def metrics_section(metrics, n_pubs):
+def norm(title):
+    return re.sub(r"[^a-z0-9]", "", title.lower())
+
+
+def fmt(x):
+    """1.3333 -> '1.33', 6.0 -> '6'."""
+    return f"{x:.2f}".rstrip("0").rstrip(".")
+
+
+def other_metrics(metrics, data, profile):
+    """The rest of the bibliometric zoo, each with its fine print: (name, value, note)."""
+    articles = metrics.get("articles") or []
+    cites = sorted((a["citations"] for a in articles), reverse=True)
+    h, year = metrics["h_index"], date.fromisoformat(metrics["updated"]).year
+    pubs = data["preprints"] + data["peer_reviewed"]
+    out = []
+
+    if cites:
+        g = max(k for k in range(1, len(cites) + 1) if sum(cites[:k]) >= k * k) if cites[0] else 0
+        out.append(("g-index", g, "Largest g whose top g papers share at least g² citations. "
+                    "Egghe (2006), for people who felt the h-index undervalued their best paper."))
+        e = math.sqrt(max(sum(cites[:h]) - h * h, 0))
+        out.append(("e-index", fmt(e), "The surplus citations in the h-core that the h-index quietly ignores. Zhang (2009)."))
+
+    first = min((a["year"] for a in articles if a.get("year")), default=None)
+    if first and year > first:
+        n = year - first
+        out.append(("m-quotient", fmt(h / n), f"h-index per year since the first paper. Hirsch (2005) called 1 "
+                    f"“successful” and 2 “outstanding”, after twenty years. It has been {n}."))
+
+    # hI-index needs the author count of every h-core paper
+    by_title = {norm(p.get("scholar_title", p["title"])): p for p in pubs}
+    core = [by_title.get(norm(a["title"])) for a in articles[:h]]
+    if h and all(core) and not any(split_authors(p["authors"])[1] for p in core):
+        n_auth = sum(len(split_authors(p["authors"])[0]) for p in core)
+        out.append(("hI-index", fmt(h * h / n_auth), f"The h-index shared out among all {n_auth} authors of the "
+                    "h-core papers. Batista et al. (2006). Collaboration, penalised."))
+
+    out.append(("i100-index", sum(c >= 100 for c in cites), "Papers with at least 100 citations. "
+                "Google's i10-index, made aspirational."))
+    out.append(("Uncited papers", sum(c == 0 for c in cites), "Papers nobody has cited yet. Give them a minute."))
+
+    full = [len(split_authors(p["authors"])[0]) for p in pubs if not split_authors(p["authors"])[1]]
+    if full:
+        out.append(("Authors per paper", fmt(sum(full) / len(full)),
+                    "Average author-list length. Science is a team sport; bibliometrics is not."))
+    n_first = sum(p["authors"].startswith(OWNER) for p in pubs)
+    out.append(("First-author papers", f"{n_first} of {len(pubs)}", "Where my name comes first. "
+                "Some committees count only these, so here they are."))
+
+    if profile.get("followers"):
+        k = profile["followers"] / (43.3 * metrics["citations"] ** 0.32)
+        out.append(("Kardashian Index", fmt(k), f"{profile.get('followers_source', 'Social-media')} followers against "
+                    "citations, F / 43.3·C^0.32. Hall (2014) calls anyone above 5 a “Science Kardashian”."))
+    return out
+
+
+def metrics_section(metrics, n_pubs, others=()):
     """Scholar metrics panel from cv/metrics.json (written weekly by scripts/update_citations.py)."""
     if not metrics:
         return ""
@@ -399,6 +456,27 @@ def metrics_section(metrics, n_pubs):
         for k, v in tiles
     )
     chart = year_chart(metrics["per_year"], updated.year) if metrics.get("per_year") else ""
+    # The other metrics are an easter egg: one quiet link in the source line opens a popover
+    egg_link = egg = ""
+    if others:
+        rows = "".join(
+            f'<div><dt>{escape(name)}</dt><dd class="egg-value">{escape(str(value))}</dd>'
+            f'<dd class="egg-note">{escape(note)}</dd></div>'
+            for name, value, note in others
+        )
+        egg_link = ' <button type="button" class="egg-link" popovertarget="other-metrics">Other metrics, if you must.</button>'
+        egg = (
+            '                <div id="other-metrics" class="egg" popover>\n'
+            '                    <button type="button" class="lightbox-close" popovertarget="other-metrics" '
+            'popovertargetaction="hide" aria-label="Close">×</button>\n'
+            '                    <h3>The other metrics</h3>\n'
+            '                    <p class="egg-lead">Academia invented quite a few. Here they all are, with the fine print.</p>\n'
+            f'                    <dl class="egg-list">{rows}</dl>\n'
+            '                    <p class="egg-foot">None of these say whether the work is any good. For how research '
+            'ought to be assessed, see <a href="https://sfdora.org/read/" target="_blank" rel="noopener noreferrer">DORA</a> '
+            'and the <a href="https://www.leidenmanifesto.org/" target="_blank" rel="noopener noreferrer">Leiden Manifesto</a>.</p>\n'
+            "                </div>\n"
+        )
     return (
         '        <section class="section" id="metrics">\n'
         '            <h2 class="section-title">Metrics</h2>\n'
@@ -406,8 +484,9 @@ def metrics_section(metrics, n_pubs):
         f'                <div class="kpis">{tile_html}</div>\n'
         + chart
         + f'                <p class="section-note">Source: <a href="{escape(SCHOLAR)}" target="_blank" rel="noopener noreferrer">Google Scholar</a>, '
-        f'updated {updated.day} {updated:%b %Y} and refreshed weekly. {updated.year} counts the year to date.</p>\n'
-        "            </div>\n"
+        f'updated {updated.day} {updated:%b %Y} and refreshed weekly. {updated.year} counts the year to date.{egg_link}</p>\n'
+        + egg
+        + "            </div>\n"
         "        </section>\n\n"
     )
 
@@ -424,10 +503,12 @@ def main():
     media = yaml.safe_load((ROOT / "cv" / "media.yaml").read_text(encoding="utf-8")) or {}
     metrics_path = ROOT / "cv" / "metrics.json"
     metrics = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.exists() else None
+    profile = yaml.safe_load((ROOT / "cv" / "profile.yaml").read_text(encoding="utf-8")) or {}
+    others = other_metrics(metrics, data, profile) if metrics else []
 
     html = (
         HEAD
-        + metrics_section(metrics, len(data["preprints"]) + len(data["peer_reviewed"]))
+        + metrics_section(metrics, len(data["preprints"]) + len(data["peer_reviewed"]), others)
         + PAPERS
         + group("Preprints &amp; under review", data["preprints"], default_tag="Preprint")
         + group("Peer-reviewed", data["peer_reviewed"])

@@ -912,3 +912,50 @@ pre.cite-text {
     .section-wide .pub { grid-template-columns: 1fr; }
     .section-wide .pub-figure { grid-column: auto; max-width: none; }
 }
+
+/* ── "Other metrics" easter egg (popover) ───────────────────────────── */
+.egg-link {
+    border: 0;
+    padding: 0;
+    background: none;
+    font: inherit;
+    color: var(--text-3);
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+.egg-link:hover { color: var(--accent); }
+
+.egg {
+    width: min(560px, 92vw);
+    max-height: 85vh;
+    overflow: auto;
+    padding: 28px 30px 24px;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
+}
+.egg::backdrop { background: rgba(8, 10, 12, 0.55); backdrop-filter: blur(2px); }
+.egg h3 { font-size: 1.3rem; margin-bottom: 4px; }
+.egg-lead { font-size: 0.92rem; color: var(--text-2); margin-bottom: 18px; }
+
+.egg-list { margin: 0; }
+.egg-list > div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 16px;
+    padding: 11px 0;
+    border-top: 1px solid var(--rule);
+}
+.egg-list dt { font-weight: 500; font-size: 0.95rem; }
+.egg-value { margin: 0; font-weight: 600; font-size: 0.95rem; text-align: right; }
+.egg-note { grid-column: 1 / -1; margin: 2px 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--text-3); }
+
+.egg-foot {
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.82rem;
+    color: var(--text-3);
+}

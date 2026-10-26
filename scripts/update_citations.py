@@ -2,8 +2,8 @@
 metrics in cv/metrics.json, via SerpAPI.
 
 metrics.json holds the profile totals (citations, h-index, i10-index), citations
-per year, and a history entry whenever the totals change; publications.html
-renders it as the metrics panel.
+per year, per-article counts (for the g-, e- and hI-index), and a history entry
+whenever the totals change; publications.html renders it as the metrics panel.
 
 Only peer-reviewed entries are updated, matched to Scholar articles by title
 (or by `scholar_title` when Scholar lists the paper under a different title).
@@ -72,8 +72,13 @@ def update_metrics(profile):
         updated=today,
         **totals,
         per_year={str(g["year"]): g.get("citations", 0) for g in cited.get("graph") or []},
+        articles=sorted(
+            ({"title": a["title"], "year": int(a["year"]) if str(a.get("year", "")).isdigit() else None,
+              "citations": (a.get("cited_by") or {}).get("value") or 0} for a in profile["articles"]),
+            key=lambda a: -a["citations"],
+        ),
     )
-    keys = ("source", "updated", "citations", "h_index", "i10_index", "per_year", "history")
+    keys = ("source", "updated", "citations", "h_index", "i10_index", "per_year", "articles", "history")
     METRICS_PATH.write_text(json.dumps({k: metrics[k] for k in keys}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
