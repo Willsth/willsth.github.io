@@ -64,7 +64,7 @@ peer_reviewed:
       booktitle: "Advances in Neural Information Processing Systems"
       note: "To appear"
     year: 2026
-    citations: 4
+    citations: 5
     url: "https://arxiv.org/abs/2605.13930"
 
   - title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya"
@@ -96,7 +96,7 @@ peer_reviewed:
       pages: "694--700"
       doi: "10.1002/epd2.20266"
     year: 2024
-    citations: 25
+    citations: 27
     url: "https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266"
 
   - title: "SPEED: Scalable Preprocessing of EEG Data for Self-Supervised Learning"
