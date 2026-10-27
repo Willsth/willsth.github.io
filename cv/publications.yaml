@@ -48,6 +48,22 @@ preprints:
     url: "https://arxiv.org/abs/2605.02500"
 
 peer_reviewed:
+  - title: "Learning transferable human physiology from two million hours of sleep with SleepFM-2"
+    figure: "media/night_atlas_807_website-light.mp4"
+    figure_poster: "media/night_atlas_807_website-light.jpg"
+    figure_dark: "media/night_atlas_807_website-dark.mp4"
+    figure_dark_poster: "media/night_atlas_807_website-dark.jpg"
+    figure_caption: "One night in SleepFM-2's embedding space: as the hypnogram plays out below, the recording traces a path through regions occupied by each sleep stage, from wake through N1–N3 and REM."
+    authors: "R Thapa, C Sun, W Lehn-Schiøler, SC Kivelson, U Hanif, H Moore IV, HG Zhang, H Ahmed, M Dige, NR Lorenzen, ERM Heremans, A Specht, U Gimenez, R Guillard, A Brink-Kjær, J Zou, E Mignot"
+    venue: "GenAI4Health Workshop, NeurIPS 2026 (to appear)"
+    web_venue: "GenAI4Health @ NeurIPS 2026 · Workshop on GenAI for Health: Agentic Systems, Clinical Trust, and Future Potential (to appear)"
+    tag: "Workshop"
+    bib:
+      type: misc
+      note: "GenAI4Health Workshop at NeurIPS 2026, non-archival"
+    year: 2026
+    url: "https://arxiv.org/abs/2609.06849"
+
   - title: "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders"
     featured: true
     summary: "Sparse autoencoders decompose the internal representations of EEG foundation models into features that can be inspected and interpreted."
