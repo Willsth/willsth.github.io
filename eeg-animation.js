@@ -45,7 +45,7 @@
 
         function draw() {
             ctx.clearRect(0, 0, w, h);
-            ctx.strokeStyle = getComputedStyle(canvas).getPropertyValue('--trace').trim() || 'rgba(11,92,140,0.5)';
+            ctx.strokeStyle = getComputedStyle(canvas).color;
             ctx.lineWidth = 1;
             ctx.lineJoin = 'round';
 
@@ -84,6 +84,6 @@
         new ResizeObserver(resize).observe(canvas);
         new IntersectionObserver(([e]) => { visible = e.isIntersecting; update(); }).observe(canvas);
         reduceMotion.addEventListener('change', update);
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+        document.addEventListener('themechange', draw);
     }
 }());

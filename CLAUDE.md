@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal academic website for William Theodor Lehn-Schiøler, hosted via GitHub Pages. Static HTML/CSS with two small vanilla scripts — no framework, no bundler. The only build step is `scripts/build_publications.py`, which generates publication markup from YAML. The current design is **v2.0**, shown in every page footer (`.version`); bump it there and in the generator's `FOOTER` together.
+Personal academic website for William Theodor Lehn-Schiøler, hosted via GitHub Pages. Static HTML/CSS with three small vanilla scripts — no framework, no bundler. The only build step is `scripts/build_publications.py`, which generates publication markup from YAML. The current design is **v2.0**, shown in every page footer (`.version`); bump it there and in the generator's `FOOTER` together.
 
 ## Development
 
@@ -22,7 +22,7 @@ The traces behind the home hero and inner page headers use **real EEG data** fro
 
 - `export_eeg.py` — Python/MNE script that picks the most alpha-rich 20-second segment, bandpass-filters (0.5–40 Hz), downsamples to 128 Hz, normalises per-channel, and writes `eeg_data.json`
 - `eeg_data.json` — pre-exported data (15 channels × 2560 samples); committed to the repo so the site works without Python
-- `eeg-animation.js` — fetches `eeg_data.json` once and draws on every `canvas.eeg-canvas` (sized to its positioned parent; `data-channels="N"` limits channels). Loops with a 1-second crossfade, time-based speed, stroke colour from the `--trace` CSS variable (follows light/dark), pauses offscreen, and draws a still frame under `prefers-reduced-motion`. The fade-in from the left is a CSS mask on `.eeg-canvas`
+- `eeg-animation.js` — fetches `eeg_data.json` once and draws on every `canvas.eeg-canvas` (sized to its positioned parent; `data-channels="N"` limits channels). Loops with a 1-second crossfade, time-based speed, stroke colour from the `--trace` CSS variable (via the canvas's computed `color`, so it follows light/dark and redraws on `themechange`), pauses offscreen, and draws a still frame under `prefers-reduced-motion`. The fade-in from the left is a CSS mask on `.eeg-canvas`
 
 To re-export (e.g. after replacing `eeg.edf`):
 ```bash
@@ -40,6 +40,7 @@ Multi-page site sharing a single stylesheet:
 - `cv/media.yaml` — talks, films and features for the home page "Talks & media" section, either `youtube:` or a self-hosted `file:` (+ `poster:`) under `media/`; the section is omitted while the list is empty. Kept out of `publications.yaml` because `update_citations.py` treats every top-level key there as a list of papers
 - `media/` — site images and video (BC-1 product photo, NeurIPS steering clip in light and dark versions, AI Denmark feature). Re-encode before adding: photos ≤1080 px, videos 1080p H.264 with `-movflags +faststart` (~15 MB for 2 min); GitHub rejects files over 100 MB, so never commit raw camera/4K files
 - `media.js` — click-to-load video: YouTube embeds (`a.video[data-yt]` facades, self-hosted `a.video[data-src]` posters and `a.chip[data-yt]` toggles that open a player under a paper, via youtube-nocookie); nothing loads from YouTube until clicked, and without JS they are plain links. Also toggles the Cite panels and their Copy buttons (Clipboard API, falling back to selecting the text), and opens paper figures in a `dialog.lightbox` (theme-matched version plus caption) and pauses autoplaying clips under reduced motion
+- `theme.js` — light/dark switch, loaded in every page's `<head>` (so a saved choice applies before first paint) and driving the `.theme-toggle` button at the end of the nav. Follows the system unless the visitor picks the other theme, which sets `data-theme` on `<html>` and is remembered in `localStorage`; picking the system's own scheme again clears it. Fires `themechange` on `document`
 - `fonts/` — self-hosted Inter and Source Serif 4 (latin subset woff2); no third-party font requests
 - `students.html` — a guide to starting a supervised project: research areas (`.area-list`), a numbered `.steps-list` of how a project gets started, a `.checklist` of what to send in a first email, report template downloads, and mutual expectations. Deliberately does **not** list specific project topics.
 - `cv.html` — web version of the CV (Experience, Education, Volunteer, Publications summary) with a download button for `cv.pdf`; keep its content in sync with `cv/cv.typ`
@@ -49,7 +50,7 @@ Multi-page site sharing a single stylesheet:
 - `.github/workflows/update-publications.yml` — runs the updater every Monday (or manually from the Actions tab), and if counts changed rebuilds `publications.html`, `index.html` and `cv.pdf` and pushes (so it commits weekly, since `metrics.json` records the update date). Uses the `SERPAPI_KEY` repo secret
 - `projects.html` — meta-refresh stub redirecting to `students.html` (keeps previously shared links working); do not add content here
 - `templates/` — LaTeX and Typst student report templates linked from `students.html`; see `templates/README.md` for the expected filenames
-- `style.css` — design tokens on `:root` (light by default, dark via `prefers-color-scheme`); every page shares the sticky `.site-nav`, a `.hero` or `.page-head` band, `.section` rows (label column + `.section-body`), and `.site-footer`. Paper lists (Papers, Selected publications) use `.section-wide`: label above, full-width list, and a fixed 360 px visual column on every paper so text and figures align
+- `style.css` — design tokens on `:root`, each colour a `light-dark(light, dark)` pair resolved by `color-scheme` (the system's, or the one `data-theme` pins); anything that can't use `light-dark()` (like `.only-light`/`.only-dark`) needs both a `prefers-color-scheme` rule guarded by `:root:not([data-theme="light"])` and a `:root[data-theme="dark"]` rule; every page shares the sticky `.site-nav`, a `.hero` or `.page-head` band, `.section` rows (label column + `.section-body`), and `.site-footer`. Paper lists (Papers, Selected publications) use `.section-wide`: label above, full-width list, and a fixed 360 px visual column on every paper so text and figures align
 
 ## Conventions
 

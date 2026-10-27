@@ -24,8 +24,8 @@
             lightbox.addEventListener('close', () => lightbox.replaceChildren());
             document.body.append(lightbox);
         }
-        const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const source = fig.querySelector(dark ? '.only-dark' : '.only-light') || fig.querySelector('.figure-zoom');
+        const themed = [...fig.querySelectorAll('.only-light, .only-dark')].find(el => getComputedStyle(el).display !== 'none');
+        const source = themed || fig.querySelector('.figure-zoom');
         const media = source.querySelector('video, img').cloneNode();
         const figure = document.createElement('figure');
         figure.append(media);
