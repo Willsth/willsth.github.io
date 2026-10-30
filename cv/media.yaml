@@ -33,6 +33,7 @@ media:
     poster: "media/ida-driving-ai-2026.jpg"
     kind: Talk
     venue: IDA Driving AI 2026
+    date: May 2026
     note: With Magnus Guldberg Pedersen
 
   - title: "Closing the gap on epilepsy diagnosis"
