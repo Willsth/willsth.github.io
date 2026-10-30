@@ -758,7 +758,8 @@ main { padding-bottom: 40px; }
     border-radius: var(--radius);
 }
 
-.feature-video { margin: 28px 0 0; }
+.feature-videos { margin-top: 28px; }
+.feature-video { margin: 0; }
 
 .video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
 .media-grid > :only-child { grid-column: 1 / -1; }
