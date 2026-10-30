@@ -1,15 +1,24 @@
-# Talks, interviews and demo videos, shown under "Talks & media" on the home page
-# (the section is hidden while this list is empty). Rebuild with
+# Talks, films and posters for presentations.html; the home page "Talks & media"
+# section shows the first two `media` entries (it is hidden while that list is empty).
+# Rebuild with
 #   python3 scripts/build_publications.py
 #
+# media — newest first
 #   title    shown under the video
 #   youtube  video ID or any YouTube URL (click-to-load embed)
 #   file     or a self-hosted .mp4 under media/ (keep it small: 1080p, ~15 MB),
-#            with an optional poster image
+#   link     or a page on another video site, opened in a new tab
+#            (file and link take an optional poster image)
 #   kind     optional, e.g. Talk, Interview, Demo
 #   venue    optional, e.g. NeurIPS 2026
 #   date     optional, e.g. Dec 2026
 #   note     optional, e.g. In Danish
+#
+# posters — newest first; PDFs and 1200 px wide JPG previews live in media/posters/
+#   title, authors (same "W Lehn-Schiøler" form as publications.yaml), event, date, year
+#   pdf, image   the poster and its preview (shown cropped to the top, full size on click)
+#   abstract     optional, shown in an "Abstract" panel
+#   paper        optional link to the paper the poster presents
 #
 # Example:
 #   - title: "Looking inside EEG foundation models with sparse autoencoders"
@@ -19,6 +28,13 @@
 #     date: Dec 2026
 
 media:
+  - title: "Scaling global neurodiagnostics: Self-supervised learning for point-of-care EEG"
+    link: "https://videos.ida.dk/playlist/dedicated/1_xn463hu8/1_4uqapf77"
+    poster: "media/ida-driving-ai-2026.jpg"
+    kind: Talk
+    venue: IDA Driving AI 2026
+    note: With Magnus Guldberg Pedersen
+
   - title: "Closing the gap on epilepsy diagnosis"
     youtube: "https://www.youtube.com/watch?v=mXnP2eMiJEg"
     kind: Film
@@ -31,3 +47,70 @@ media:
     venue: AI Denmark Summit 2025
     date: Dec 2025
     note: In Danish
+
+posters:
+  - title: "Automated EEG Screening with a Transformer Model in Shadow Operation in Kenya"
+    authors: "MG Pedersen, AM Storgaard, W Lehn-Schiøler"
+    event: "4th International Conference on AI in Epilepsy · San Juan, Puerto Rico"
+    date: "Mar 2026"
+    year: 2026
+    pdf: "media/posters/ai4epilepsy-2026.pdf"
+    image: "media/posters/ai4epilepsy-2026.jpg"
+    abstract: >-
+      In many emerging markets a shortage of trained neurophysiologists leaves many people
+      with undiagnosed epilepsy. Portable EEG such as the BrainCapture BC-1 has increased
+      recording capacity, but expert interpretation remains the bottleneck. We evaluate a
+      transformer-based EEG screening model running in “shadow” operation across more than
+      20 Kenyan clinical sites, where results were generated in the background without
+      influencing clinical decisions. The classifier, built on a pretrained encoder, was
+      fine-tuned on 2,130 recordings and evaluated on 347 later recordings against the
+      clinical workflow. At a clinical threshold of 95% sensitivity it reached 79%
+      specificity on 60-second windows and 48% at recording level, showing the potential of
+      transformer models for scalable EEG screening in resource-limited settings.
+
+  - title: "Evaluating the Effectiveness of Point-of-Care EEG in Emerging Markets"
+    authors: "T Lehn-Schiøler, NJ Fidele, T Goodwin, W Lehn-Schiøler, SA Larsen, S Beniczky"
+    event: "5th International Congress on Mobile Health and Digital Technology in Epilepsy · Copenhagen"
+    date: "Sep 2025"
+    year: 2025
+    pdf: "media/posters/mhdte-2025.pdf"
+    image: "media/posters/mhdte-2025.jpg"
+    abstract: >-
+      EEG is essential for diagnosing seizures, but access is often limited by high costs and
+      a shortage of specialists. BrainCapture's smartphone-based BC-1 EEG system lets
+      non-expert healthcare workers record EEG for remote interpretation. This study reports
+      the first large-scale clinical implementation of the BC-1 in Kenyan hospitals: 146
+      healthcare workers at 20 hospitals recorded 1,273 EEGs from 1,239 participants. 94.8%
+      of recordings met diagnostic quality criteria, and abnormalities were found in 34.1% of
+      interpretable EEGs, including 265 with epileptiform abnormalities, 73 with
+      encephalopathy and 9 clinical seizures.
+
+  - title: "The BrainCapture Transformer Model for EEG"
+    authors: "W Lehn-Schiøler, MG Pedersen, BK Fazal"
+    event: "3rd International Conference on Artificial Intelligence in Epilepsy and Neurological Disorders · Breckenridge, CO"
+    date: "Mar 2025"
+    year: 2025
+    pdf: "media/posters/ai4epilepsy-2025.pdf"
+    image: "media/posters/ai4epilepsy-2025.jpg"
+    abstract: >-
+      AI can assist EEG diagnostics, but the scarcity of publicly labelled EEG limits its
+      development. We propose a general-purpose EEG transformer, pretrained with
+      self-supervised learning on the large, unlabelled TUH EEG corpus, which can be
+      fine-tuned on smaller labelled datasets for tasks such as seizure detection,
+      abnormality detection and artifact removal, learning general structure from unlabelled
+      data so that fewer manually annotated recordings are needed.
+
+  - title: "Concept-Based Explainability for an EEG Transformer Model"
+    authors: "AG Madsen, W Lehn-Schiøler, Á Jónsdóttir, B Arnardóttir, LK Hansen"
+    event: "IEEE International Workshop on Machine Learning for Signal Processing (MLSP) · Rome"
+    date: "Sep 2023"
+    year: 2023
+    pdf: "media/posters/mlsp-2023.pdf"
+    image: "media/posters/mlsp-2023.jpg"
+    paper: "https://arxiv.org/abs/2307.12745"
+    abstract: >-
+      We apply Testing with Concept Activation Vectors (TCAV) to BENDR-based EEG transformer
+      models to understand their structure and decision-making. We propose TCAV workflows for
+      EEG with concepts from human-annotated data, cortical areas and frequency bands, add
+      sanity checks that make sure the explanations are valid in simple settings, and show
+      two applications: seizure prediction and brain-computer interfacing.

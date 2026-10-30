@@ -683,6 +683,8 @@ main { padding-bottom: 40px; }
 .pub-figure { margin: 0; align-self: start; }
 .pub-figure video, .pub-figure img { width: 100%; height: auto; }
 .pub-figure figcaption { display: none; }   /* shown in the lightbox */
+/* Posters show their top (title and authors) at the figures' 3:2, in full in the lightbox */
+.pub-figure.is-poster img { aspect-ratio: 3 / 2; object-fit: cover; object-position: top; }
 
 .figure-zoom {
     display: block;
@@ -706,7 +708,7 @@ main { padding-bottom: 40px; }
 }
 .lightbox::backdrop { background: rgba(8, 10, 12, 0.6); backdrop-filter: blur(2px); }
 .lightbox figure { margin: 0; }
-.lightbox video, .lightbox img { width: 100%; height: auto; }
+.lightbox video, .lightbox img { display: block; width: 100%; height: auto; max-height: 92vh; object-fit: contain; }
 .lightbox figcaption { padding: 4px 24px 22px; font-size: 0.92rem; color: var(--text-2); line-height: 1.55; }
 .lightbox-close {
     position: absolute;

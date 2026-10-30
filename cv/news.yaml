@@ -1,0 +1,38 @@
+# News, newest first. The home page shows the latest five; news.html shows them all,
+# grouped by year. Rebuild with
+#   python3 scripts/build_publications.py
+#
+#   date   YYYY-MM
+#   text   one sentence; inline HTML is allowed (links open in a new tab when they
+#          leave the site, so add target="_blank" rel="noopener noreferrer" to those)
+
+news:
+  - date: "2026-10"
+    text: '<a href="https://arxiv.org/abs/2609.06849" target="_blank" rel="noopener noreferrer">SleepFM-2</a>, a sleep foundation model trained on two million hours of polysomnography, was accepted at the <a href="https://genai4health.github.io/2026-NeurIPS/" target="_blank" rel="noopener noreferrer">GenAI4Health workshop</a> at NeurIPS 2026.'
+
+  - date: "2026-09"
+    text: 'Our paper on <a href="https://arxiv.org/abs/2605.13930" target="_blank" rel="noopener noreferrer">mechanistic interpretability of EEG foundation models via sparse autoencoders</a> was accepted at NeurIPS 2026.'
+
+  - date: "2026-07"
+    text: 'New preprint: <a href="https://arxiv.org/abs/2607.20142" target="_blank" rel="noopener noreferrer">real-time EEG cap electrode detection</a> for guided point-of-care placement.'
+
+  - date: "2026-05"
+    text: 'Two preprints: <a href="https://arxiv.org/abs/2605.02500" target="_blank" rel="noopener noreferrer">pretraining on sleep data</a> and the <a href="https://arxiv.org/abs/2605.08157" target="_blank" rel="noopener noreferrer">clinical feasibility of smartphone-based EEG in Kenya</a>.'
+
+  - date: "2026-04"
+    text: 'Abstract on smartphone-based EEG in Kenya at the AAN Annual Meeting.'
+
+  - date: "2026-03"
+    text: 'Poster on <a href="presentations.html#poster-ai4epilepsy-2026">automated EEG screening in shadow operation in Kenya</a> at the 4th International Conference on AI in Epilepsy in San Juan, Puerto Rico.'
+
+  - date: "2025-12"
+    text: 'BrainCapture was in the running for Industriens Fonds'' AI Prize at AI Denmark Summit 2025 (<a href="presentations.html#talks">video</a>).'
+
+  - date: "2025-09"
+    text: 'Started my Industrial PhD at BrainCapture and DTU Health Tech.'
+
+  - date: "2025-09"
+    text: 'Poster on <a href="presentations.html#poster-mhdte-2025">point-of-care EEG in emerging markets</a> at the 5th International Congress on Mobile Health and Digital Technology in Epilepsy in Copenhagen.'
+
+  - date: "2025-03"
+    text: 'Poster on <a href="presentations.html#poster-ai4epilepsy-2025">the BrainCapture transformer model for EEG</a> at the 3rd International Conference on AI in Epilepsy and Neurological Disorders in Breckenridge, Colorado.'
