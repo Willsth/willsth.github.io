@@ -734,7 +734,7 @@ main { padding-bottom: 40px; }
 }
 :root[data-theme="dark"] .only-light { display: none; }
 :root[data-theme="dark"] .only-dark  { display: block; }
-.feature-photo figcaption, .feature-video figcaption {
+.feature-photo figcaption {
     font-size: 0.82rem;
     color: var(--text-3);
     margin-top: 8px;
@@ -759,7 +759,6 @@ main { padding-bottom: 40px; }
 }
 
 .feature-videos { margin-top: 28px; }
-.feature-video { margin: 0; }
 
 .video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
 .media-grid > :only-child { grid-column: 1 / -1; }
