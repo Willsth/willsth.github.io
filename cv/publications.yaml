@@ -46,6 +46,7 @@ preprints:
     web_venue: "arXiv:2605.02500 · May 2026"
     year: 2026
     url: "https://arxiv.org/abs/2605.02500"
+    code: "https://github.com/willsth/sleepfm4biosignals"
 
 peer_reviewed:
   - title: "Learning transferable human physiology from two million hours of sleep with SleepFM-2"
@@ -82,6 +83,7 @@ peer_reviewed:
     year: 2026
     citations: 5
     url: "https://arxiv.org/abs/2605.13930"
+    code: "https://github.com/BrainCapture/mechanistic-interpretability-for-eeg-foundation-models"
 
   - title: "Feasibility of a Smartphone-based EEG Recording System for Neurological Evaluation in Kenya"
     authors: "N Enkhtsetseg, W Lehn-Schiøler, NJ Fidele, T Lehn-Schiøler, et al."
@@ -126,6 +128,7 @@ peer_reviewed:
     year: 2024
     citations: 4
     url: "https://arxiv.org/abs/2408.08065"
+    code: "https://github.com/gjoelbye/SPEED"
 
   - title: "Concept-based explainability for an EEG transformer model"
     authors: "AG Madsen, W Lehn-Schiøler, Á Jónsdóttir, B Arnardóttir, LK Hansen"
@@ -137,4 +140,5 @@ peer_reviewed:
     year: 2023
     citations: 16
     url: "https://arxiv.org/abs/2307.12745"
+    code: "https://github.com/gjoelbye/TCAV-BENDR"
     poster: "media/posters/mlsp-2023.pdf"
