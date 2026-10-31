@@ -45,6 +45,25 @@ media:
     note: In Danish
 
 posters:
+  - title: "Clinical Utility and Feasibility of Smartphone-based EEG Across Hospitals in Kenya"
+    authors: "N Enkhtsetseg, W Lehn-Schiøler, A Storgaard, MG Pedersen, DR Rice, G Wambugu, NJ Fidele, AA Arbune, SA Larsen, S Beniczky, FJ Mateen"
+    event: "AAN Annual Meeting · Chicago"
+    date: "Apr 2026"
+    year: 2026
+    pdf: "media/posters/aan-2026.pdf"
+    image: "media/posters/aan-2026.jpg"
+    abstract: >-
+      Epilepsy affects more than 50 million people, over 80% of them in low- and
+      middle-income countries, where access to EEG is limited by cost, infrastructure and
+      workforce. This retrospective study across 20 hospitals and imaging clinics in Kenya
+      reports on 2,522 standardized 30-minute smartphone-based EEGs (BrainCapture BC-1),
+      recorded by trained healthcare workers, mostly for seizures or convulsions, and
+      reviewed remotely by certified neurophysiologists. 89.4% of recordings were clinically
+      interpretable, and 29% were abnormal, of which 74% were epileptiform. Epileptiform
+      abnormalities were more common in younger patients and non-epileptiform ones in older
+      adults. The findings support the feasibility of decentralized EEG in resource-limited
+      settings.
+
   - title: "Automated EEG Screening with a Transformer Model in Shadow Operation in Kenya"
     authors: "MG Pedersen, AM Storgaard, W Lehn-Schiøler"
     event: "4th International Conference on AI in Epilepsy · San Juan, Puerto Rico"
