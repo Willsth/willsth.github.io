@@ -1,13 +1,13 @@
 {
   "source": "Google Scholar",
-  "updated": "2026-10-26",
-  "citations": 55,
+  "updated": "2026-11-02",
+  "citations": 56,
   "h_index": 4,
   "i10_index": 2,
   "per_year": {
     "2024": 3,
     "2025": 21,
-    "2026": 31
+    "2026": 32
   },
   "articles": [
     {
@@ -18,7 +18,7 @@
     {
       "title": "Concept-based explainability for an EEG transformer model",
       "year": 2023,
-      "citations": 16
+      "citations": 17
     },
     {
       "title": "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders",
@@ -60,6 +60,12 @@
     {
       "date": "2026-10-25",
       "citations": 55,
+      "h_index": 4,
+      "i10_index": 2
+    },
+    {
+      "date": "2026-11-02",
+      "citations": 56,
       "h_index": 4,
       "i10_index": 2
     }
