@@ -15,15 +15,23 @@
     };
     let key = store.get('gc-key');
 
-    // GoatCounter allows four requests a second, so calls go one at a time with a short gap
+    // GoatCounter allows four requests a second, and each call costs two (the browser's CORS
+    // preflight counts too). A rate-limited preflight surfaces as a network error, so retry those.
+    const wait = ms => new Promise(r => setTimeout(r, ms));
     let queue = Promise.resolve();
     function api(path, params) {
         const url = API + path + '?' + new URLSearchParams(params);
         const call = async () => {
             for (let tries = 0; ; tries++) {
-                const res = await fetch(url, { headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' } });
-                await new Promise(r => setTimeout(r, 260));
-                if (res.status === 429 && tries < 3) { await new Promise(r => setTimeout(r, 1000)); continue; }
+                let res;
+                try {
+                    res = await fetch(url, { headers: { Authorization: 'Bearer ' + key } });
+                } catch (e) {
+                    if (tries < 3) { await wait(1200); continue; }
+                    throw new Error('GoatCounter could not be reached; an ad blocker may be stopping it');
+                }
+                await wait(600);
+                if (res.status === 429 && tries < 3) { await wait(1200); continue; }
                 if (res.status === 401 || res.status === 403) throw Object.assign(new Error('auth'), { auth: true });
                 if (!res.ok) throw new Error('GoatCounter answered ' + res.status);
                 return res.json();
@@ -128,9 +136,13 @@
         plot.append(bars);
     }
 
+    // Screen-size buckets come back with ids and empty names
+    const SIZES = { phone: 'Phone', tablet: 'Tablet', desktop: 'Desktop', desktophd: 'Large desktop', unknown: 'Unknown' };
+
     function drawList(name, rows) {
         const list = $(`[data-list="${name}"]`);
         list.replaceChildren();
+        rows = rows.filter(r => r.count > 0);
         if (!rows.length) { list.append(el('li', 'rank-empty', 'Nothing yet.')); return; }
         const max = Math.max(...rows.map(r => r.count));
         rows.forEach(r => {
@@ -165,8 +177,13 @@
         $('#stats-body').hidden = false;
         $('#stats-body').setAttribute('aria-busy', 'true');
         try {
-            const total = await api('/stats/total', range);
-            const prev = await api('/stats/total', { start: hour(prevStart), end: hour(start) });
+            // One call covers this period and the one before it, split by day below
+            const both = (await api('/stats/total', { start: hour(prevStart), end: range.end })).stats || [];
+            const first = localDay(start);
+            const stats = both.filter(s => s.day >= first);
+            const sum = list => list.reduce((a, s) => a + s.daily, 0);
+            const total = { total: sum(stats) };
+            const prev = { total: sum(both.filter(s => s.day < first)) };
             const hits = await api('/stats/hits', { ...range, limit: 10 });
             const lists = {};
             for (const page of ['toprefs', 'locations', 'sizes']) {
@@ -174,7 +191,6 @@
             }
             if (id !== run) return;
 
-            const stats = total.stats || [];
             const elapsed = Math.max(1, Math.round((end - start) / 864e5));
             const today = stats.find(s => s.day === localDay(new Date()));
             const change = prev.total ? Math.round((total.total - prev.total) / prev.total * 100) : null;
@@ -188,7 +204,7 @@
             drawList('pages', hits.hits.filter(h => !h.event).map(h => ({ name: pageName(h), detail: h.path, count: h.count })));
             drawList('toprefs', lists.toprefs.map(s => ({ name: s.name || 'Direct or unknown', count: s.count })));
             drawList('locations', lists.locations.map(s => ({ name: s.name || 'Unknown', count: s.count })));
-            drawList('sizes', lists.sizes.map(s => ({ name: s.name || 'Unknown', count: s.count })));
+            drawList('sizes', lists.sizes.map(s => ({ name: s.name || SIZES[s.id] || 'Unknown', count: s.count })));
             $('#stats-updated').textContent = 'Loaded ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
         } catch (e) {
             if (id !== run) return;
