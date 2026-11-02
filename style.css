@@ -904,6 +904,50 @@ pre.cite-text {
 }
 .chart + .section-note { margin-top: 28px; }
 
+/* ── Site stats (stats.html) ───────────────────────────────────────── */
+/* Up to 30 bars: they narrow to fit, and only some carry a date label */
+.chart-dense .bar { width: min(24px, 70%); }
+.chart-dense .bar-label { white-space: nowrap; }
+
+.stats-ranges { margin-top: 0; }
+.stats-ranges[hidden], #stats-connect[hidden] { display: none; }
+
+.stats-key { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.stats-key input {
+    flex: 1 1 260px;
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+}
+.stats-key input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* Ranked lists: name, count, and a thin bar scaled to the top entry */
+.rank-list { list-style: none; margin: 0; padding: 0; }
+.rank-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    row-gap: 6px;
+    padding: 10px 0;
+    border-top: 1px solid var(--rule);
+}
+.rank-list li:first-child { border-top: 0; padding-top: 0; }
+.rank-name { overflow-wrap: anywhere; }
+.rank-name small { margin-left: 8px; color: var(--text-3); font-size: 0.8rem; }
+.rank-value { color: var(--text-2); font-variant-numeric: tabular-nums; }
+.rank-bar {
+    grid-column: 1 / -1;
+    height: 4px;
+    width: var(--w);
+    background: var(--chart);
+    border-radius: 2px;
+}
+.rank-list .rank-empty { display: block; color: var(--text-3); }
+[aria-busy="true"] { opacity: 0.55; transition: opacity 0.2s ease; }
+
 /* ── Wide sections (paper lists) ───────────────────────────────────── */
 /* The label sits above and the list uses the full width, with a fixed visual
    column on every paper so text and figures line up down the page */

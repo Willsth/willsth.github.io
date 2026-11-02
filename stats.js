@@ -1,8 +1,8 @@
-// Visitor counts via GoatCounter (no cookies, no personal data), dashboard at willsth.goatcounter.com.
+// Visitor counts via GoatCounter (no cookies, no personal data), shown privately on stats.html.
 // Opening any page with #stats marks this browser as the owner's: its own visits stop being counted
-// (GoatCounter's `skipgc` flag) and a Stats link to the dashboard appears in the footer. #nostats undoes it.
+// (GoatCounter's `skipgc` flag) and a Stats link to stats.html appears in the footer. #nostats undoes it.
 (function () {
-    const DASHBOARD = 'https://willsth.goatcounter.com';
+    const STATS_PAGE = 'stats.html';
     let owner = false;
 
     try {
@@ -16,7 +16,7 @@
     }
 
     const counter = document.createElement('script');
-    counter.dataset.goatcounter = DASHBOARD + '/count';
+    counter.dataset.goatcounter = 'https://willsth.goatcounter.com/count';
     counter.async = true;
     counter.src = 'https://gc.zgo.at/count.js';
     document.head.appendChild(counter);
@@ -26,9 +26,7 @@
         const links = document.querySelector('.site-footer .footer-links');
         if (!links) return;
         const a = document.createElement('a');
-        a.href = DASHBOARD;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
+        a.href = STATS_PAGE;
         a.textContent = 'Stats';
         links.appendChild(a);
     };
