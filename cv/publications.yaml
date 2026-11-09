@@ -81,7 +81,7 @@ peer_reviewed:
       booktitle: "Advances in Neural Information Processing Systems"
       note: "To appear"
     year: 2026
-    citations: 5
+    citations: 6
     url: "https://arxiv.org/abs/2605.13930"
     code: "https://github.com/BrainCapture/mechanistic-interpretability-for-eeg-foundation-models"
 

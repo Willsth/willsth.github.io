@@ -1,13 +1,13 @@
 {
   "source": "Google Scholar",
-  "updated": "2026-11-02",
-  "citations": 56,
+  "updated": "2026-11-09",
+  "citations": 57,
   "h_index": 4,
   "i10_index": 2,
   "per_year": {
     "2024": 3,
     "2025": 21,
-    "2026": 32
+    "2026": 33
   },
   "articles": [
     {
@@ -23,7 +23,7 @@
     {
       "title": "Mechanistic Interpretability of EEG Foundation Models via Sparse Autoencoders",
       "year": 2026,
-      "citations": 5
+      "citations": 6
     },
     {
       "title": "Speed: Scalable preprocessing of eeg data for self-supervised learning",
@@ -66,6 +66,12 @@
     {
       "date": "2026-11-02",
       "citations": 56,
+      "h_index": 4,
+      "i10_index": 2
+    },
+    {
+      "date": "2026-11-09",
+      "citations": 57,
       "h_index": 4,
       "i10_index": 2
     }
