@@ -2,3 +2,6 @@
 __pycache__/
 # Uncompressed originals kept locally; commit only the web-sized versions
 media/posters/*-original.pdf
+
+.DS_Store
+AI Denmark Video.mp4
