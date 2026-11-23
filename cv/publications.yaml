@@ -49,6 +49,20 @@ preprints:
     code: "https://github.com/willsth/sleepfm4biosignals"
 
 peer_reviewed:
+  - title: "Artificial intelligence-enabled quality assurance for point-of-care electroencephalographic cap placement by inexperienced users"
+    featured: true
+    summary: "In a randomized crossover study, AI-guided EEG cap placement by inexperienced users was noninferior to an expert technologist."
+    authors: "W Lehn-Schiøler, MS Nilsson, S Armand Larsen, AB Justesen, NS Detlefsen, S Beniczky"
+    venue: "Epilepsia (online ahead of print)"
+    web_venue: "Epilepsia · online ahead of print, November 2026"
+    bib:
+      type: article
+      journal: "Epilepsia"
+      doi: "10.1002/epi.70591"
+      note: "Online ahead of print"
+    year: 2026
+    url: "https://onlinelibrary.wiley.com/doi/10.1002/epi.70591"
+
   - title: "Learning transferable human physiology from two million hours of sleep with SleepFM-2"
     figure: "media/night_atlas_807_website-light.mp4"
     figure_poster: "media/night_atlas_807_website-light.jpg"

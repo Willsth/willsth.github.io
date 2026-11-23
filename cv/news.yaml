@@ -7,6 +7,9 @@
 #          leave the site, so add target="_blank" rel="noopener noreferrer" to those)
 
 news:
+  - date: "2026-11"
+    text: 'Our randomized crossover study of <a href="https://onlinelibrary.wiley.com/doi/10.1002/epi.70591" target="_blank" rel="noopener noreferrer">AI-guided EEG cap placement by inexperienced users</a> is published in Epilepsia.'
+
   - date: "2026-10"
     text: '<a href="https://arxiv.org/abs/2609.06849" target="_blank" rel="noopener noreferrer">SleepFM-2</a>, a sleep foundation model trained on two million hours of polysomnography, was accepted at the <a href="https://genai4health.github.io/2026-NeurIPS/" target="_blank" rel="noopener noreferrer">GenAI4Health workshop</a> at NeurIPS 2026.'
 
