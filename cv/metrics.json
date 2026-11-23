@@ -1,19 +1,19 @@
 {
   "source": "Google Scholar",
-  "updated": "2026-11-16",
-  "citations": 57,
+  "updated": "2026-11-23",
+  "citations": 58,
   "h_index": 4,
   "i10_index": 2,
   "per_year": {
     "2024": 3,
     "2025": 21,
-    "2026": 33
+    "2026": 34
   },
   "articles": [
     {
       "title": "Low‐cost portable EEG device for bridging the diagnostic gap in resource‐limited areas",
       "year": 2024,
-      "citations": 27
+      "citations": 28
     },
     {
       "title": "Concept-based explainability for an EEG transformer model",
@@ -72,6 +72,12 @@
     {
       "date": "2026-11-09",
       "citations": 57,
+      "h_index": 4,
+      "i10_index": 2
+    },
+    {
+      "date": "2026-11-23",
+      "citations": 58,
       "h_index": 4,
       "i10_index": 2
     }

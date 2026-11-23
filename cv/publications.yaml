@@ -115,7 +115,7 @@ peer_reviewed:
       pages: "694--700"
       doi: "10.1002/epd2.20266"
     year: 2024
-    citations: 27
+    citations: 28
     url: "https://onlinelibrary.wiley.com/doi/10.1002/epd2.20266"
 
   - title: "SPEED: Scalable Preprocessing of EEG Data for Self-Supervised Learning"
